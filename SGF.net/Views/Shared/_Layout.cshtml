@@ -1,52 +1,56 @@
-﻿@*<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-</head>
-<body>
-    @RenderBody()
-
-    @Scripts.Render("~/bundles/jquery")
-    @RenderSection("scripts", required: false)
-</body>
-</html>*@
-
-<html>
-<head>
- <meta charset="utf-8" />
- <meta name="viewport" content="width=device-width" />
- <title>@ViewBag.Title</title>
- @Styles.Render("~/Content/bootstrapcss")
-</head>
+    <head>
+         <meta charset="utf-8" />
+         <meta name="viewport" content="width=device-width" />
+         <title>@ViewBag.Title</title>
+         @Styles.Render("~/Content/bootstrapcss")
+    </head>
 <body>
  <div class="container-fluid">
- <div class="row-fluid">
- <div class="span3">
- <div class="well sidebar-nav">
- <ul class="nav nav-list">
- <li class="nav-header">1st Navigation Header</li>
- <li>@Html.ActionLink("Link 1","../")</li>
- <li>@Html.ActionLink("Link 2","../")</li>
- <li>@Html.ActionLink("Link 3","../")</li>
- <li>@Html.ActionLink("Link 4","../")</li>
- <li class="nav-header">2nd Navigation Header</li>
- <li>@Html.ActionLink("Link AA","../")</li>
- <li>@Html.ActionLink("Link BB","../")</li>
- <li>@Html.ActionLink("Link CC","../")</li>
- </ul>
- </div>
- </div>
- <div class="span9">
- @RenderSection("featured", required: false)
- <div class="row-fluid">
- @RenderBody()
- </div>
- </div>
- </div>
+
+     <div class="row">
+  <div class="col-xs-12 col-md-8">.col-xs-12 .col-md-8</div>
+  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+</div>
+
+<!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
+<div class="row">
+  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+</div>
+
+<!-- Columns are always 50% wide, on mobile and desktop -->
+<div class="row">
+  <div class="col-xs-6">.col-xs-6</div>
+  <div class="col-xs-6">.col-xs-6</div>
+</div>
+     
+    <div class="row-fluid">
+        <div class="span3">
+            <div class="well sidebar-nav">
+             <ul class="nav nav-list">
+                 <li class="nav-header">1st Navigation Header</li>
+                 <li>@Html.ActionLink("Link 1","../")</li>
+                 <li>@Html.ActionLink("Link 2","../")</li>
+                 <li>@Html.ActionLink("Link 3","../")</li>
+                 <li>@Html.ActionLink("Link 4","../")</li>
+                 <li class="nav-header">2nd Navigation Header</li>
+                 <li>@Html.ActionLink("Link AA","../")</li>
+                 <li>@Html.ActionLink("Link BB","../")</li>
+                 <li>@Html.ActionLink("Link CC","../")</li>
+             </ul>
+            </div>
+          </div>
+ 
+         <div class="span9">
+            @RenderSection("featured", required: false)
+             <div class="row-fluid">
+                @RenderBody()
+             </div>
+         </div>
+    </div>
  </div>
  @Scripts.Render("~/bundles/jquery")
  @Scripts.Render("~/bundles/bootstrapjs")
