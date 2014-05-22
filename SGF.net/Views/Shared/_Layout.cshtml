@@ -5,25 +5,34 @@
          <meta name="viewport" content="width=device-width, initial-scale=1">
          <title>@ViewBag.Title</title>
          @Styles.Render("~/Content/bootstrapcss")
+         <link rel="stylesheet" type="text/css" href="/Content/Site.css" media="screen" />
     </head>
-<body>
+<body id="estiloBody">
   
     
-<div class="container">
+<div class="container" >
  <div class="row clearfix  hidden-xs visible-sm visible-md visible-lg"><br></div>
 
  <div class="row show-grid">
   <div class="col-md-2">Logo</div>  
   <div class="col-md-10">
-      <header>
-          header
+      <header id="estiloHeader">
+          
+          <h1>Sistema de Gestión Financiera - <small>Sitramusca</small> </h1>
+          
       </header>
   </div>
 </div>
 
 <div class="row show-grid">
-  <div class="col-md-6">BreadCrumbs</div>  
-  <div class="col-md-6">
+  <div class="col-md-3">
+      <ol class="breadcrumb">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Library</a></li>
+          <li class="active">Data</li>
+      </ol>
+  </div>  
+  <div class="col-md-9">
      <nav class="navbar navbar-default" role="navigation">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -40,7 +49,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav nav-tabs">
-            <li class="active"><a href="#">Principal</a></li>
+            <li><a href="#">Principal</a></li>
             <li><a href="#">Acerca de</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contáctenos<b class="caret"></b></a>
@@ -64,11 +73,14 @@
 </div>
 
 <div class="row show-grid">
-  <div class="col-md-4">
+  <div class="col-md-3">
+      <h4>Menú Principal <span class="glyphicon glyphicon-th-large"></span></h4>
      <div class="btn-group-vertical">
-         <div class="btn-group">          
-              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                    Mantenimiento <span class="caret"></span>
+         <div class="btn-group">                     
+              <button type="button" class="btn btn-default btn-lg dropdown-toggle" data-toggle="dropdown">
+                   Mantenimiento 
+                  <span class="caret"></span>
+                      
               </button>
               <ul class="dropdown-menu" role="menu">
                   <li><a href="#">Departamentos</a></li>
@@ -77,11 +89,12 @@
                   <li class="divider"></li>
                   <li><a href="#">Reportes</a></li>
               </ul>
-           </div>
+          </div>
        
           <div class="btn-group">   
-               <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                    Créditos <span class="caret"></span>
+               <button type="button" class="btn btn-default btn-lg dropdown-toggle" data-toggle="dropdown">                     
+                    Créditos 
+                   <span class="caret"></span>              
               </button>
               <ul class="dropdown-menu" role="menu">
                   <li><a href="#">Líneas de crédito</a></li>
@@ -90,11 +103,36 @@
                   <li><a href="#">Aprobación</a></li>             
                   <li><a href="#">Impresión</a></li>
               </ul>      
-        </div>
+          </div>
+
+          <div class="btn-group">   
+               <button type="button" class="btn btn-default btn-lg dropdown-toggle" data-toggle="dropdown">               
+                    Pagos 
+               <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                  <li><a href="#">Registro de Pagos</a></li>                  
+                  <li><a href="#">Anular Pagos</a></li>
+                  <li class="divider"></li>           
+                  <li><a href="#">Reportes</a></li>
+              </ul>      
+          </div>
+
+          <div class="btn-group">   
+               <button type="button" class="btn btn-default btn-lg dropdown-toggle" data-toggle="dropdown">               
+                    Seguridad 
+               <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                  <li><a href="#">Perfiles</a></li>                  
+                  <li><a href="#">Usuarios</a></li>                  
+              </ul>      
+          </div>
+
       </div>
  </div>  
   
-    <div class="col-md-8">Content
+    <div class="col-md-7">Content
      @RenderBody()
   </div>
 </div>
