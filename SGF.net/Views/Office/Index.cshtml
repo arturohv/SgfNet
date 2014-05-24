@@ -1,15 +1,18 @@
-﻿@model IEnumerable<SGF.net.Models.offices>
+﻿@using SGF.net.Helpers;
+@model IEnumerable<SGF.net.Models.offices>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "SGF.net - Departamentos";
 }
 
-<h2>Index</h2>
-
+<h2>Departamentos</h2>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <span class="btn btn-default">@Html.ActionButton(" Agregar", "Create", "Office", "glyphicon glyphicon-plus")</span>
 </p>
-<table>
+
+
+
+<table class="table table-striped">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.officeId)
@@ -20,20 +23,25 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.officeId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.officeName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new {  id=item.officeId  }) |
-            @Html.ActionLink("Details", "Details", new { id=item.officeId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.officeId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.officeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.officeName)
+            </td>
+            <td>
+                <span class="btn btn-default btn-sm">@Html.ActionLink("Editar", "Edit", new { id = item.officeId }) <span class="glyphicon glyphicon-pencil"></span></span>
+                <span class="btn btn-default">@Html.ActionLink("Detalle ", "Details", new { id = item.officeId }) <span class="glyphicon glyphicon-list-alt"></span></span>
+                <span class="btn btn-default">@Html.ActionLink("Borrar ", "Delete", new { id = item.officeId }) <span class="glyphicon glyphicon-remove"></span></span>
+                @* @Html.ActionLink("Details", "Details", new { id=item.officeId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.officeId })*@
+
+            </td>
+        </tr>
+    }
 
 </table>
+
