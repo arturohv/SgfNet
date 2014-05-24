@@ -5,6 +5,7 @@
          <meta name="viewport" content="width=device-width, initial-scale=1">
          <title>@ViewBag.Title</title>
          @Styles.Render("~/Content/bootstrapcss")
+         @RenderSection("scripts", required: false)
          <link rel="stylesheet" type="text/css" href="/Content/Site.css" media="screen" />
     </head>
 <body id="estiloBody">
@@ -140,7 +141,7 @@
 </div>
     </div>  
 
-</div>
+@*</div>*@
 
 
  @Scripts.Render("~/bundles/jquery")

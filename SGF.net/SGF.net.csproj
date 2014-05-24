@@ -44,6 +44,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -127,8 +129,57 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OfficeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\loanTypes.cs">
+      <DependentUpon>ModelXenosEN.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\memberChilds.cs">
+      <DependentUpon>ModelXenosEN.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\memberFees.cs">
+      <DependentUpon>ModelXenosEN.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\memberFeeStatus.cs">
+      <DependentUpon>ModelXenosEN.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\memberLoans.cs">
+      <DependentUpon>ModelXenosEN.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\memberLoansStatus.cs">
+      <DependentUpon>ModelXenosEN.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\memberMaritalStatus.cs">
+      <DependentUpon>ModelXenosEN.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\memberPaymentTypes.cs">
+      <DependentUpon>ModelXenosEN.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\members.cs">
+      <DependentUpon>ModelXenosEN.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelXenosEN.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelXenosEN.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelXenosEN.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelXenosEN.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelXenosEN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelXenosEN.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\offices.cs">
+      <DependentUpon>ModelXenosEN.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>ModelXenosEN.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -146,6 +197,23 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <EntityDeploy Include="Models\ModelXenosEN.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelXenosEN.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ModelXenosEN.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelXenosEN.edmx</DependentUpon>
+      <LastGenOutput>ModelXenosEN.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ModelXenosEN.edmx.diagram">
+      <DependentUpon>ModelXenosEN.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\ModelXenosEN.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelXenosEN.edmx</DependentUpon>
+      <LastGenOutput>ModelXenosEN.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Images\applications-office.png" />
     <Content Include="Images\fondo_body.png" />
@@ -176,13 +244,20 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Office\Index.cshtml" />
+    <Content Include="Views\Office\Details.cshtml" />
+    <Content Include="Views\Office\Create.cshtml" />
+    <Content Include="Views\Office\Edit.cshtml" />
+    <Content Include="Views\Office\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

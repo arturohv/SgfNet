@@ -1,0 +1,39 @@
+﻿@model IEnumerable<SGF.net.Models.offices>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.officeId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.officeName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.officeId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.officeName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {  id=item.officeId  }) |
+            @Html.ActionLink("Details", "Details", new { id=item.officeId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.officeId })
+        </td>
+    </tr>
+}
+
+</table>

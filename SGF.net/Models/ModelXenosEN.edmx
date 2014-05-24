@@ -1,0 +1,751 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="XenosENModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="XenosENModelStoreContainer">
+          <EntitySet Name="loanTypes" EntityType="XenosENModel.Store.loanTypes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="memberChilds" EntityType="XenosENModel.Store.memberChilds" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="memberFees" EntityType="XenosENModel.Store.memberFees" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="memberFeeStatus" EntityType="XenosENModel.Store.memberFeeStatus" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="memberLoans" EntityType="XenosENModel.Store.memberLoans" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="memberLoansStatus" EntityType="XenosENModel.Store.memberLoansStatus" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="memberMaritalStatus" EntityType="XenosENModel.Store.memberMaritalStatus" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="memberPaymentTypes" EntityType="XenosENModel.Store.memberPaymentTypes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="members" EntityType="XenosENModel.Store.members" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="offices" EntityType="XenosENModel.Store.offices" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="sysdiagrams" EntityType="XenosENModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_memberChilds_members" Association="XenosENModel.Store.FK_memberChilds_members">
+            <End Role="members" EntitySet="members" />
+            <End Role="memberChilds" EntitySet="memberChilds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_memberFees_memberFeeStatus" Association="XenosENModel.Store.FK_memberFees_memberFeeStatus">
+            <End Role="memberFeeStatus" EntitySet="memberFeeStatus" />
+            <End Role="memberFees" EntitySet="memberFees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_memberFees_memberLoans" Association="XenosENModel.Store.FK_memberFees_memberLoans">
+            <End Role="memberLoans" EntitySet="memberLoans" />
+            <End Role="memberFees" EntitySet="memberFees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_memberLoans_loanTypes" Association="XenosENModel.Store.FK_memberLoans_loanTypes">
+            <End Role="loanTypes" EntitySet="loanTypes" />
+            <End Role="memberLoans" EntitySet="memberLoans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_memberLoans_memberLoansStatus" Association="XenosENModel.Store.FK_memberLoans_memberLoansStatus">
+            <End Role="memberLoansStatus" EntitySet="memberLoansStatus" />
+            <End Role="memberLoans" EntitySet="memberLoans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_memberLoans_members" Association="XenosENModel.Store.FK_memberLoans_members">
+            <End Role="members" EntitySet="members" />
+            <End Role="memberLoans" EntitySet="memberLoans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_members_memberMaritalStatus" Association="XenosENModel.Store.FK_members_memberMaritalStatus">
+            <End Role="memberMaritalStatus" EntitySet="memberMaritalStatus" />
+            <End Role="members" EntitySet="members" />
+          </AssociationSet>
+          <AssociationSet Name="FK_members_memberPaymentTypes" Association="XenosENModel.Store.FK_members_memberPaymentTypes">
+            <End Role="memberPaymentTypes" EntitySet="memberPaymentTypes" />
+            <End Role="members" EntitySet="members" />
+          </AssociationSet>
+          <AssociationSet Name="FK_members_offices" Association="XenosENModel.Store.FK_members_offices">
+            <End Role="offices" EntitySet="offices" />
+            <End Role="members" EntitySet="members" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="loanTypes">
+          <Key>
+            <PropertyRef Name="loanTypeId" />
+          </Key>
+          <Property Name="loanTypeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="40" />
+          <Property Name="description" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="amount" Type="money" Nullable="false" />
+          <Property Name="interestRate" Type="money" Nullable="false" />
+          <Property Name="monthTerm" Type="int" Nullable="false" />
+          <Property Name="paymentMonth" Type="int" Nullable="false" />
+          <Property Name="totalPayments" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="totalAmount" Type="money" StoreGeneratedPattern="Computed" />
+          <Property Name="amountFee" Type="money" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="memberChilds">
+          <Key>
+            <PropertyRef Name="memberChildId" />
+          </Key>
+          <Property Name="memberChildId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="memberId" Type="int" Nullable="false" />
+          <Property Name="firtName" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="lastName" Type="nvarchar" Nullable="false" MaxLength="40" />
+          <Property Name="birthdate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="memberFees">
+          <Key>
+            <PropertyRef Name="memberFeeId" />
+            <PropertyRef Name="memberLoanId" />
+            <PropertyRef Name="memberId" />
+          </Key>
+          <Property Name="memberFeeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="memberLoanId" Type="int" Nullable="false" />
+          <Property Name="memberId" Type="int" Nullable="false" />
+          <Property Name="payrollNumber" Type="int" Nullable="false" />
+          <Property Name="startDate" Type="datetime" Nullable="false" />
+          <Property Name="endDate" Type="datetime" Nullable="false" />
+          <Property Name="recordDate" Type="datetime" Nullable="false" />
+          <Property Name="amountFee" Type="money" Nullable="false" />
+          <Property Name="previousBalance" Type="money" Nullable="false" />
+          <Property Name="currentBalance" Type="money" Nullable="false" />
+          <Property Name="feeBalance" Type="int" Nullable="false" />
+          <Property Name="memberFeeStatusId" Type="int" Nullable="false" />
+          <Property Name="notes" Type="nvarchar" MaxLength="200" />
+          <Property Name="cancelDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="memberFeeStatus">
+          <Key>
+            <PropertyRef Name="memberFeeStatusId" />
+          </Key>
+          <Property Name="memberFeeStatusId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="memberLoans">
+          <Key>
+            <PropertyRef Name="memberLoanId" />
+            <PropertyRef Name="memberId" />
+          </Key>
+          <Property Name="memberLoanId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="memberId" Type="int" Nullable="false" />
+          <Property Name="loanTypeId" Type="int" Nullable="false" />
+          <Property Name="memberLoanStatusId" Type="int" Nullable="false" />
+          <Property Name="appDate" Type="datetime" />
+          <Property Name="aprDate" Type="datetime" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="memberLoansStatus">
+          <Key>
+            <PropertyRef Name="memberLoanStatusId" />
+          </Key>
+          <Property Name="memberLoanStatusId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="memberMaritalStatus">
+          <Key>
+            <PropertyRef Name="maritalStatusId" />
+          </Key>
+          <Property Name="maritalStatusId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="memberPaymentTypes">
+          <Key>
+            <PropertyRef Name="paymentTypeId" />
+          </Key>
+          <Property Name="paymentTypeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="members">
+          <Key>
+            <PropertyRef Name="memberId" />
+          </Key>
+          <Property Name="memberId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="documentId" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="firstName" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="lastName" Type="nvarchar" Nullable="false" MaxLength="40" />
+          <Property Name="maritalStatusId" Type="int" Nullable="false" />
+          <Property Name="birthdate" Type="datetime" Nullable="false" />
+          <Property Name="phoneNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="cellNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="address" Type="nvarchar" MaxLength="300" />
+          <Property Name="officeId" Type="int" Nullable="false" />
+          <Property Name="dischargedDate" Type="datetime" Nullable="false" />
+          <Property Name="paymentTypeId" Type="int" Nullable="false" />
+          <Property Name="active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="offices">
+          <Key>
+            <PropertyRef Name="officeId" />
+          </Key>
+          <Property Name="officeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="officeName" Type="nvarchar" Nullable="false" MaxLength="60" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_memberChilds_members">
+          <End Role="members" Type="XenosENModel.Store.members" Multiplicity="1" />
+          <End Role="memberChilds" Type="XenosENModel.Store.memberChilds" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="members">
+              <PropertyRef Name="memberId" />
+            </Principal>
+            <Dependent Role="memberChilds">
+              <PropertyRef Name="memberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_memberFees_memberFeeStatus">
+          <End Role="memberFeeStatus" Type="XenosENModel.Store.memberFeeStatus" Multiplicity="1" />
+          <End Role="memberFees" Type="XenosENModel.Store.memberFees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="memberFeeStatus">
+              <PropertyRef Name="memberFeeStatusId" />
+            </Principal>
+            <Dependent Role="memberFees">
+              <PropertyRef Name="memberFeeStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_memberFees_memberLoans">
+          <End Role="memberLoans" Type="XenosENModel.Store.memberLoans" Multiplicity="1" />
+          <End Role="memberFees" Type="XenosENModel.Store.memberFees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="memberLoans">
+              <PropertyRef Name="memberLoanId" />
+              <PropertyRef Name="memberId" />
+            </Principal>
+            <Dependent Role="memberFees">
+              <PropertyRef Name="memberLoanId" />
+              <PropertyRef Name="memberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_memberLoans_loanTypes">
+          <End Role="loanTypes" Type="XenosENModel.Store.loanTypes" Multiplicity="1" />
+          <End Role="memberLoans" Type="XenosENModel.Store.memberLoans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="loanTypes">
+              <PropertyRef Name="loanTypeId" />
+            </Principal>
+            <Dependent Role="memberLoans">
+              <PropertyRef Name="loanTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_memberLoans_memberLoansStatus">
+          <End Role="memberLoansStatus" Type="XenosENModel.Store.memberLoansStatus" Multiplicity="1" />
+          <End Role="memberLoans" Type="XenosENModel.Store.memberLoans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="memberLoansStatus">
+              <PropertyRef Name="memberLoanStatusId" />
+            </Principal>
+            <Dependent Role="memberLoans">
+              <PropertyRef Name="memberLoanStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_memberLoans_members">
+          <End Role="members" Type="XenosENModel.Store.members" Multiplicity="1" />
+          <End Role="memberLoans" Type="XenosENModel.Store.memberLoans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="members">
+              <PropertyRef Name="memberId" />
+            </Principal>
+            <Dependent Role="memberLoans">
+              <PropertyRef Name="memberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_members_memberMaritalStatus">
+          <End Role="memberMaritalStatus" Type="XenosENModel.Store.memberMaritalStatus" Multiplicity="1" />
+          <End Role="members" Type="XenosENModel.Store.members" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="memberMaritalStatus">
+              <PropertyRef Name="maritalStatusId" />
+            </Principal>
+            <Dependent Role="members">
+              <PropertyRef Name="maritalStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_members_memberPaymentTypes">
+          <End Role="memberPaymentTypes" Type="XenosENModel.Store.memberPaymentTypes" Multiplicity="1" />
+          <End Role="members" Type="XenosENModel.Store.members" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="memberPaymentTypes">
+              <PropertyRef Name="paymentTypeId" />
+            </Principal>
+            <Dependent Role="members">
+              <PropertyRef Name="paymentTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_members_offices">
+          <End Role="offices" Type="XenosENModel.Store.offices" Multiplicity="1" />
+          <End Role="members" Type="XenosENModel.Store.members" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="offices">
+              <PropertyRef Name="officeId" />
+            </Principal>
+            <Dependent Role="members">
+              <PropertyRef Name="officeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="XenosENModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="XenosENEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="loanTypes" EntityType="XenosENModel.loanTypes" />
+          <EntitySet Name="memberChilds" EntityType="XenosENModel.memberChilds" />
+          <EntitySet Name="memberFees" EntityType="XenosENModel.memberFees" />
+          <EntitySet Name="memberFeeStatus" EntityType="XenosENModel.memberFeeStatus" />
+          <EntitySet Name="memberLoans" EntityType="XenosENModel.memberLoans" />
+          <EntitySet Name="memberLoansStatus" EntityType="XenosENModel.memberLoansStatus" />
+          <EntitySet Name="memberMaritalStatus" EntityType="XenosENModel.memberMaritalStatus" />
+          <EntitySet Name="memberPaymentTypes" EntityType="XenosENModel.memberPaymentTypes" />
+          <EntitySet Name="members" EntityType="XenosENModel.members" />
+          <EntitySet Name="offices" EntityType="XenosENModel.offices" />
+          <EntitySet Name="sysdiagrams" EntityType="XenosENModel.sysdiagrams" />
+          <AssociationSet Name="FK_memberLoans_loanTypes" Association="XenosENModel.FK_memberLoans_loanTypes">
+            <End Role="loanTypes" EntitySet="loanTypes" />
+            <End Role="memberLoans" EntitySet="memberLoans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_memberChilds_members" Association="XenosENModel.FK_memberChilds_members">
+            <End Role="members" EntitySet="members" />
+            <End Role="memberChilds" EntitySet="memberChilds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_memberFees_memberFeeStatus" Association="XenosENModel.FK_memberFees_memberFeeStatus">
+            <End Role="memberFeeStatus" EntitySet="memberFeeStatus" />
+            <End Role="memberFees" EntitySet="memberFees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_memberFees_memberLoans" Association="XenosENModel.FK_memberFees_memberLoans">
+            <End Role="memberLoans" EntitySet="memberLoans" />
+            <End Role="memberFees" EntitySet="memberFees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_memberLoans_memberLoansStatus" Association="XenosENModel.FK_memberLoans_memberLoansStatus">
+            <End Role="memberLoansStatus" EntitySet="memberLoansStatus" />
+            <End Role="memberLoans" EntitySet="memberLoans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_memberLoans_members" Association="XenosENModel.FK_memberLoans_members">
+            <End Role="members" EntitySet="members" />
+            <End Role="memberLoans" EntitySet="memberLoans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_members_memberMaritalStatus" Association="XenosENModel.FK_members_memberMaritalStatus">
+            <End Role="memberMaritalStatus" EntitySet="memberMaritalStatus" />
+            <End Role="members" EntitySet="members" />
+          </AssociationSet>
+          <AssociationSet Name="FK_members_memberPaymentTypes" Association="XenosENModel.FK_members_memberPaymentTypes">
+            <End Role="memberPaymentTypes" EntitySet="memberPaymentTypes" />
+            <End Role="members" EntitySet="members" />
+          </AssociationSet>
+          <AssociationSet Name="FK_members_offices" Association="XenosENModel.FK_members_offices">
+            <End Role="offices" EntitySet="offices" />
+            <End Role="members" EntitySet="members" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="loanTypes">
+          <Key>
+            <PropertyRef Name="loanTypeId" />
+          </Key>
+          <Property Name="loanTypeId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="40" Unicode="true" FixedLength="false" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="amount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="interestRate" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="monthTerm" Type="Int32" Nullable="false" />
+          <Property Name="paymentMonth" Type="Int32" Nullable="false" />
+          <Property Name="totalPayments" Type="Int32" p1:StoreGeneratedPattern="Computed" />
+          <Property Name="totalAmount" Type="Decimal" Precision="19" Scale="4" p1:StoreGeneratedPattern="Computed" />
+          <Property Name="amountFee" Type="Decimal" Precision="19" Scale="4" p1:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="memberLoans" Relationship="XenosENModel.FK_memberLoans_loanTypes" FromRole="loanTypes" ToRole="memberLoans" />
+        </EntityType>
+        <EntityType Name="memberChilds">
+          <Key>
+            <PropertyRef Name="memberChildId" />
+          </Key>
+          <Property Name="memberChildId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="memberId" Type="Int32" Nullable="false" />
+          <Property Name="firtName" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="lastName" Type="String" Nullable="false" MaxLength="40" Unicode="true" FixedLength="false" />
+          <Property Name="birthdate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="members" Relationship="XenosENModel.FK_memberChilds_members" FromRole="memberChilds" ToRole="members" />
+        </EntityType>
+        <EntityType Name="memberFees">
+          <Key>
+            <PropertyRef Name="memberFeeId" />
+            <PropertyRef Name="memberLoanId" />
+            <PropertyRef Name="memberId" />
+          </Key>
+          <Property Name="memberFeeId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="memberLoanId" Type="Int32" Nullable="false" />
+          <Property Name="memberId" Type="Int32" Nullable="false" />
+          <Property Name="payrollNumber" Type="Int32" Nullable="false" />
+          <Property Name="startDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="endDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="recordDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="amountFee" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="previousBalance" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="currentBalance" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="feeBalance" Type="Int32" Nullable="false" />
+          <Property Name="memberFeeStatusId" Type="Int32" Nullable="false" />
+          <Property Name="notes" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="cancelDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="memberFeeStatus" Relationship="XenosENModel.FK_memberFees_memberFeeStatus" FromRole="memberFees" ToRole="memberFeeStatus" />
+          <NavigationProperty Name="memberLoans" Relationship="XenosENModel.FK_memberFees_memberLoans" FromRole="memberFees" ToRole="memberLoans" />
+        </EntityType>
+        <EntityType Name="memberFeeStatus">
+          <Key>
+            <PropertyRef Name="memberFeeStatusId" />
+          </Key>
+          <Property Name="memberFeeStatusId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="memberFees" Relationship="XenosENModel.FK_memberFees_memberFeeStatus" FromRole="memberFeeStatus" ToRole="memberFees" />
+        </EntityType>
+        <EntityType Name="memberLoans">
+          <Key>
+            <PropertyRef Name="memberLoanId" />
+            <PropertyRef Name="memberId" />
+          </Key>
+          <Property Name="memberLoanId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="memberId" Type="Int32" Nullable="false" />
+          <Property Name="loanTypeId" Type="Int32" Nullable="false" />
+          <Property Name="memberLoanStatusId" Type="Int32" Nullable="false" />
+          <Property Name="appDate" Type="DateTime" Precision="3" />
+          <Property Name="aprDate" Type="DateTime" Precision="3" />
+          <Property Name="Notes" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="loanTypes" Relationship="XenosENModel.FK_memberLoans_loanTypes" FromRole="memberLoans" ToRole="loanTypes" />
+          <NavigationProperty Name="memberFees" Relationship="XenosENModel.FK_memberFees_memberLoans" FromRole="memberLoans" ToRole="memberFees" />
+          <NavigationProperty Name="memberLoansStatus" Relationship="XenosENModel.FK_memberLoans_memberLoansStatus" FromRole="memberLoans" ToRole="memberLoansStatus" />
+          <NavigationProperty Name="members" Relationship="XenosENModel.FK_memberLoans_members" FromRole="memberLoans" ToRole="members" />
+        </EntityType>
+        <EntityType Name="memberLoansStatus">
+          <Key>
+            <PropertyRef Name="memberLoanStatusId" />
+          </Key>
+          <Property Name="memberLoanStatusId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="memberLoans" Relationship="XenosENModel.FK_memberLoans_memberLoansStatus" FromRole="memberLoansStatus" ToRole="memberLoans" />
+        </EntityType>
+        <EntityType Name="memberMaritalStatus">
+          <Key>
+            <PropertyRef Name="maritalStatusId" />
+          </Key>
+          <Property Name="maritalStatusId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="members" Relationship="XenosENModel.FK_members_memberMaritalStatus" FromRole="memberMaritalStatus" ToRole="members" />
+        </EntityType>
+        <EntityType Name="memberPaymentTypes">
+          <Key>
+            <PropertyRef Name="paymentTypeId" />
+          </Key>
+          <Property Name="paymentTypeId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="members" Relationship="XenosENModel.FK_members_memberPaymentTypes" FromRole="memberPaymentTypes" ToRole="members" />
+        </EntityType>
+        <EntityType Name="members">
+          <Key>
+            <PropertyRef Name="memberId" />
+          </Key>
+          <Property Name="memberId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="documentId" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="firstName" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="lastName" Type="String" Nullable="false" MaxLength="40" Unicode="true" FixedLength="false" />
+          <Property Name="maritalStatusId" Type="Int32" Nullable="false" />
+          <Property Name="birthdate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="phoneNumber" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="cellNumber" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="address" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
+          <Property Name="officeId" Type="Int32" Nullable="false" />
+          <Property Name="dischargedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="paymentTypeId" Type="Int32" Nullable="false" />
+          <Property Name="active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="memberChilds" Relationship="XenosENModel.FK_memberChilds_members" FromRole="members" ToRole="memberChilds" />
+          <NavigationProperty Name="memberLoans" Relationship="XenosENModel.FK_memberLoans_members" FromRole="members" ToRole="memberLoans" />
+          <NavigationProperty Name="memberMaritalStatus" Relationship="XenosENModel.FK_members_memberMaritalStatus" FromRole="members" ToRole="memberMaritalStatus" />
+          <NavigationProperty Name="memberPaymentTypes" Relationship="XenosENModel.FK_members_memberPaymentTypes" FromRole="members" ToRole="memberPaymentTypes" />
+          <NavigationProperty Name="offices" Relationship="XenosENModel.FK_members_offices" FromRole="members" ToRole="offices" />
+        </EntityType>
+        <EntityType Name="offices">
+          <Key>
+            <PropertyRef Name="officeId" />
+          </Key>
+          <Property Name="officeId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="officeName" Type="String" Nullable="false" MaxLength="60" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="members" Relationship="XenosENModel.FK_members_offices" FromRole="offices" ToRole="members" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_memberLoans_loanTypes">
+          <End Role="loanTypes" Type="XenosENModel.loanTypes" Multiplicity="1" />
+          <End Role="memberLoans" Type="XenosENModel.memberLoans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="loanTypes">
+              <PropertyRef Name="loanTypeId" />
+            </Principal>
+            <Dependent Role="memberLoans">
+              <PropertyRef Name="loanTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_memberChilds_members">
+          <End Role="members" Type="XenosENModel.members" Multiplicity="1" />
+          <End Role="memberChilds" Type="XenosENModel.memberChilds" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="members">
+              <PropertyRef Name="memberId" />
+            </Principal>
+            <Dependent Role="memberChilds">
+              <PropertyRef Name="memberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_memberFees_memberFeeStatus">
+          <End Role="memberFeeStatus" Type="XenosENModel.memberFeeStatus" Multiplicity="1" />
+          <End Role="memberFees" Type="XenosENModel.memberFees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="memberFeeStatus">
+              <PropertyRef Name="memberFeeStatusId" />
+            </Principal>
+            <Dependent Role="memberFees">
+              <PropertyRef Name="memberFeeStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_memberFees_memberLoans">
+          <End Role="memberLoans" Type="XenosENModel.memberLoans" Multiplicity="1" />
+          <End Role="memberFees" Type="XenosENModel.memberFees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="memberLoans">
+              <PropertyRef Name="memberLoanId" />
+              <PropertyRef Name="memberId" />
+            </Principal>
+            <Dependent Role="memberFees">
+              <PropertyRef Name="memberLoanId" />
+              <PropertyRef Name="memberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_memberLoans_memberLoansStatus">
+          <End Role="memberLoansStatus" Type="XenosENModel.memberLoansStatus" Multiplicity="1" />
+          <End Role="memberLoans" Type="XenosENModel.memberLoans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="memberLoansStatus">
+              <PropertyRef Name="memberLoanStatusId" />
+            </Principal>
+            <Dependent Role="memberLoans">
+              <PropertyRef Name="memberLoanStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_memberLoans_members">
+          <End Role="members" Type="XenosENModel.members" Multiplicity="1" />
+          <End Role="memberLoans" Type="XenosENModel.memberLoans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="members">
+              <PropertyRef Name="memberId" />
+            </Principal>
+            <Dependent Role="memberLoans">
+              <PropertyRef Name="memberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_members_memberMaritalStatus">
+          <End Role="memberMaritalStatus" Type="XenosENModel.memberMaritalStatus" Multiplicity="1" />
+          <End Role="members" Type="XenosENModel.members" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="memberMaritalStatus">
+              <PropertyRef Name="maritalStatusId" />
+            </Principal>
+            <Dependent Role="members">
+              <PropertyRef Name="maritalStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_members_memberPaymentTypes">
+          <End Role="memberPaymentTypes" Type="XenosENModel.memberPaymentTypes" Multiplicity="1" />
+          <End Role="members" Type="XenosENModel.members" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="memberPaymentTypes">
+              <PropertyRef Name="paymentTypeId" />
+            </Principal>
+            <Dependent Role="members">
+              <PropertyRef Name="paymentTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_members_offices">
+          <End Role="offices" Type="XenosENModel.offices" Multiplicity="1" />
+          <End Role="members" Type="XenosENModel.members" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="offices">
+              <PropertyRef Name="officeId" />
+            </Principal>
+            <Dependent Role="members">
+              <PropertyRef Name="officeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="XenosENModelStoreContainer" CdmEntityContainer="XenosENEntities">
+          <EntitySetMapping Name="loanTypes">
+            <EntityTypeMapping TypeName="XenosENModel.loanTypes">
+              <MappingFragment StoreEntitySet="loanTypes">
+                <ScalarProperty Name="loanTypeId" ColumnName="loanTypeId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="interestRate" ColumnName="interestRate" />
+                <ScalarProperty Name="monthTerm" ColumnName="monthTerm" />
+                <ScalarProperty Name="paymentMonth" ColumnName="paymentMonth" />
+                <ScalarProperty Name="totalPayments" ColumnName="totalPayments" />
+                <ScalarProperty Name="totalAmount" ColumnName="totalAmount" />
+                <ScalarProperty Name="amountFee" ColumnName="amountFee" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="memberChilds">
+            <EntityTypeMapping TypeName="XenosENModel.memberChilds">
+              <MappingFragment StoreEntitySet="memberChilds">
+                <ScalarProperty Name="memberChildId" ColumnName="memberChildId" />
+                <ScalarProperty Name="memberId" ColumnName="memberId" />
+                <ScalarProperty Name="firtName" ColumnName="firtName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="memberFees">
+            <EntityTypeMapping TypeName="XenosENModel.memberFees">
+              <MappingFragment StoreEntitySet="memberFees">
+                <ScalarProperty Name="memberFeeId" ColumnName="memberFeeId" />
+                <ScalarProperty Name="memberLoanId" ColumnName="memberLoanId" />
+                <ScalarProperty Name="memberId" ColumnName="memberId" />
+                <ScalarProperty Name="payrollNumber" ColumnName="payrollNumber" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="recordDate" ColumnName="recordDate" />
+                <ScalarProperty Name="amountFee" ColumnName="amountFee" />
+                <ScalarProperty Name="previousBalance" ColumnName="previousBalance" />
+                <ScalarProperty Name="currentBalance" ColumnName="currentBalance" />
+                <ScalarProperty Name="feeBalance" ColumnName="feeBalance" />
+                <ScalarProperty Name="memberFeeStatusId" ColumnName="memberFeeStatusId" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+                <ScalarProperty Name="cancelDate" ColumnName="cancelDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="memberFeeStatus">
+            <EntityTypeMapping TypeName="XenosENModel.memberFeeStatus">
+              <MappingFragment StoreEntitySet="memberFeeStatus">
+                <ScalarProperty Name="memberFeeStatusId" ColumnName="memberFeeStatusId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="memberLoans">
+            <EntityTypeMapping TypeName="XenosENModel.memberLoans">
+              <MappingFragment StoreEntitySet="memberLoans">
+                <ScalarProperty Name="memberLoanId" ColumnName="memberLoanId" />
+                <ScalarProperty Name="memberId" ColumnName="memberId" />
+                <ScalarProperty Name="loanTypeId" ColumnName="loanTypeId" />
+                <ScalarProperty Name="memberLoanStatusId" ColumnName="memberLoanStatusId" />
+                <ScalarProperty Name="appDate" ColumnName="appDate" />
+                <ScalarProperty Name="aprDate" ColumnName="aprDate" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="memberLoansStatus">
+            <EntityTypeMapping TypeName="XenosENModel.memberLoansStatus">
+              <MappingFragment StoreEntitySet="memberLoansStatus">
+                <ScalarProperty Name="memberLoanStatusId" ColumnName="memberLoanStatusId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="memberMaritalStatus">
+            <EntityTypeMapping TypeName="XenosENModel.memberMaritalStatus">
+              <MappingFragment StoreEntitySet="memberMaritalStatus">
+                <ScalarProperty Name="maritalStatusId" ColumnName="maritalStatusId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="memberPaymentTypes">
+            <EntityTypeMapping TypeName="XenosENModel.memberPaymentTypes">
+              <MappingFragment StoreEntitySet="memberPaymentTypes">
+                <ScalarProperty Name="paymentTypeId" ColumnName="paymentTypeId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="members">
+            <EntityTypeMapping TypeName="XenosENModel.members">
+              <MappingFragment StoreEntitySet="members">
+                <ScalarProperty Name="memberId" ColumnName="memberId" />
+                <ScalarProperty Name="documentId" ColumnName="documentId" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="maritalStatusId" ColumnName="maritalStatusId" />
+                <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+                <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+                <ScalarProperty Name="cellNumber" ColumnName="cellNumber" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="officeId" ColumnName="officeId" />
+                <ScalarProperty Name="dischargedDate" ColumnName="dischargedDate" />
+                <ScalarProperty Name="paymentTypeId" ColumnName="paymentTypeId" />
+                <ScalarProperty Name="active" ColumnName="active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="offices">
+            <EntityTypeMapping TypeName="XenosENModel.offices">
+              <MappingFragment StoreEntitySet="offices">
+                <ScalarProperty Name="officeId" ColumnName="officeId" />
+                <ScalarProperty Name="officeName" ColumnName="officeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="XenosENModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
