@@ -21,6 +21,7 @@ namespace SGF.net.Models
     
         public int officeId { get; set; }
         public string officeName { get; set; }
+        public string description { get; set; }
     
         public virtual ICollection<members> members { get; set; }
     }

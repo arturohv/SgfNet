@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="XenosENModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="XenosENModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="XenosENModelStoreContainer">
           <EntitySet Name="loanTypes" EntityType="XenosENModel.Store.loanTypes" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="memberChilds" EntityType="XenosENModel.Store.memberChilds" store:Type="Tables" Schema="dbo" />
@@ -165,6 +165,7 @@
           </Key>
           <Property Name="officeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="officeName" Type="nvarchar" Nullable="false" MaxLength="60" />
+          <Property Name="description" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -286,8 +287,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="XenosENModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -469,6 +469,7 @@
           <Property Name="officeId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="officeName" Type="String" Nullable="false" MaxLength="60" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="members" Relationship="XenosENModel.FK_members_offices" FromRole="offices" ToRole="members" />
+          <Property Type="String" Name="description" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -710,6 +711,7 @@
           <EntitySetMapping Name="offices">
             <EntityTypeMapping TypeName="XenosENModel.offices">
               <MappingFragment StoreEntitySet="offices">
+                <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="officeId" ColumnName="officeId" />
                 <ScalarProperty Name="officeName" ColumnName="officeName" />
               </MappingFragment>

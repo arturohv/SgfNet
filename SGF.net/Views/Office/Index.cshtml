@@ -7,7 +7,8 @@
 
 <h2>Departamentos</h2>
 <p>
-    <span class="btn btn-default">@Html.ActionButton(" Agregar", "Create", "Office", "glyphicon glyphicon-plus")</span>
+    @*<span class="btn btn-default">@Html.ActionButton(" Agregar", "Create", "Office", "glyphicon glyphicon-plus")</span>*@
+    <a title="Agregar" href="@Url.Action("Create", "Office")" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Agregar </a>                           
 </p>
 
 
@@ -32,14 +33,14 @@
             <td>
                 @Html.DisplayFor(modelItem => item.officeName)
             </td>
-            <td>
-                <span class="btn btn-default btn-sm">@Html.ActionLink("Editar", "Edit", new { id = item.officeId }) <span class="glyphicon glyphicon-pencil"></span></span>
-                <span class="btn btn-default">@Html.ActionLink("Detalle ", "Details", new { id = item.officeId }) <span class="glyphicon glyphicon-list-alt"></span></span>
-                <span class="btn btn-default">@Html.ActionLink("Borrar ", "Delete", new { id = item.officeId }) <span class="glyphicon glyphicon-remove"></span></span>
-                @* @Html.ActionLink("Details", "Details", new { id=item.officeId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.officeId })*@
-
-            </td>
+          
+            <td class="text-center controls">
+                        <div class="btn-group btn-group-sm control">                            
+                            <a title="Detalles" href="@Url.Action("Details", "Office", new { id = item.officeId })" class="btn btn-default bg-warning"><span class="glyphicon glyphicon-list-alt"></span></a>                           
+                            <a title="Editar" href="@Url.Action("Edit", "Office", new { id = item.officeId })" class="btn btn-default bg-info"><span class="glyphicon glyphicon-pencil"></span></a>                           
+                            <a title="Eliminar" href="@Url.Action("Delete", "Office", new { id = item.officeId })" class="btn btn-default bg-danger"><span class="glyphicon glyphicon-remove"></span></a>                            
+                        </div>
+                 </td>
         </tr>
     }
 

@@ -215,6 +215,7 @@
       <DependentUpon>ModelXenosEN.edmx</DependentUpon>
       <LastGenOutput>ModelXenosEN.cs</LastGenOutput>
     </Content>
+    <Compile Include="Models\Metadata\officesMetadata.cs" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Images\applications-office.png" />
     <Content Include="Images\fondo_body.png" />
