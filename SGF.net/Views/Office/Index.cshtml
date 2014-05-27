@@ -5,44 +5,102 @@
     ViewBag.Title = "SGF.net - Departamentos";
 }
 
-<h2>Departamentos</h2>
-<p>
-    @*<span class="btn btn-default">@Html.ActionButton(" Agregar", "Create", "Office", "glyphicon glyphicon-plus")</span>*@
-    <a title="Agregar" href="@Url.Action("Create", "Office")" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Agregar </a>                           
-</p>
-
-
-
-<table class="table table-striped">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.officeId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.officeName)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<div class="panel panel-primary">
+ 
+  <div class="panel-heading">Lista de Departamentos</div>
+  <div class="panel-body">   
+  
+    @if (Model.Count() > 0){
+    <table class="table table-striped">
+        
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.officeId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.officeName)
-            </td>
-          
-            <td class="text-center controls">
-                        <div class="btn-group btn-group-sm control">                            
-                            <a title="Detalles" href="@Url.Action("Details", "Office", new { id = item.officeId })" class="btn btn-default bg-warning"><span class="glyphicon glyphicon-list-alt"></span></a>                           
-                            <a title="Editar" href="@Url.Action("Edit", "Office", new { id = item.officeId })" class="btn btn-default bg-info"><span class="glyphicon glyphicon-pencil"></span></a>                           
-                            <a title="Eliminar" href="@Url.Action("Delete", "Office", new { id = item.officeId })" class="btn btn-default bg-danger"><span class="glyphicon glyphicon-remove"></span></a>                            
-                        </div>
-                 </td>
+            <th>
+                @Html.DisplayNameFor(model => model.officeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.officeName)
+            </th>
+            <th>
+                <a style="float: right" title="Agregar" href="@Url.Action("Create", "Office")" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></a>
+            </th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.officeId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.officeName)
+                </td>
 
+                <td class="text-right controls">
+                    <div class="btn-group btn-group-sm control">
+                        <a title="Detalles" href="@Url.Action("Details", "Office", new { id = item.officeId })" class="btn btn-default bg-warning"><span class="glyphicon glyphicon-list-alt"></span></a>
+                        <a title="Editar" href="@Url.Action("Edit", "Office", new { id = item.officeId })" class="btn btn-default bg-info"><span class="glyphicon glyphicon-pencil"></span></a>
+                        <a title="Eliminar" href="@Url.Action("Delete", "Office", new { id = item.officeId })" class="btn btn-default bg-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                    </div>
+                </td>
+            </tr>
+        }
+
+    </table>
+
+}
+else
+{
+    <div class ="clearfix"></div>
+    <div class ="alert alert-info">
+        <div class ="no-results">No existen datos.</div>
+    </div>
+
+}
+  
+</div>
+</div>
+
+
+@*@if (Model.Count() > 0){
+    <table class="table table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.officeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.officeName)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.officeId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.officeName)
+                </td>
+
+                <td class="text-center controls">
+                    <div class="btn-group btn-group-sm control">
+                        <a title="Detalles" href="@Url.Action("Details", "Office", new { id = item.officeId })" class="btn btn-default bg-warning"><span class="glyphicon glyphicon-list-alt"></span></a>
+                        <a title="Editar" href="@Url.Action("Edit", "Office", new { id = item.officeId })" class="btn btn-default bg-info"><span class="glyphicon glyphicon-pencil"></span></a>
+                        <a title="Eliminar" href="@Url.Action("Delete", "Office", new { id = item.officeId })" class="btn btn-default bg-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                    </div>
+                </td>
+            </tr>
+        }
+
+    </table>
+
+}
+else
+{
+    <div class ="clearfix"></div>
+    <div class ="alert alert-info">
+        <div class ="no-results">No existen datos.</div>
+    </div>
+
+}*@
