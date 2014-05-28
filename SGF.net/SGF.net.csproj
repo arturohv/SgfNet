@@ -124,6 +124,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_GlobalResources\Resources.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -133,6 +138,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Boostrap3\BootstrapHelper.cs" />
+    <Compile Include="Helpers\Boostrap3\Buttons.cs" />
+    <Compile Include="Helpers\Boostrap3\Core\EnumUtils.cs" />
+    <Compile Include="Helpers\Boostrap3\Core\StringValue.cs" />
+    <Compile Include="Helpers\Boostrap3\Icons.cs" />
+    <Compile Include="Helpers\Boostrap3\Navs.cs" />
     <Compile Include="Helpers\HtmlExtensions.cs" />
     <Compile Include="Models\loanTypes.cs">
       <DependentUpon>ModelXenosEN.tt</DependentUpon>
@@ -261,6 +272,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Resources.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Resources.designer.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
