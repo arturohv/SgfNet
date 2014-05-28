@@ -6,7 +6,7 @@ namespace SGF.net.Models
 {
     [MetadataTypeAttribute(typeof(offices.OfficesMetadata))]
 
-    [Bind(Exclude = "officeId")] 
+    //[Bind(Exclude = "officeId")] 
 	public partial class offices
 	{
 		internal sealed class OfficesMetadata{
