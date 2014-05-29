@@ -16,10 +16,10 @@ namespace SGF.net.Models
             }
 
             [Key]            
-            [DisplayName("Id Oficina:")]            
+            [DisplayName("Id:")]            
             public int officeId { get; set; }
 
-            [DisplayName("Oficina:")]
+            [DisplayName("Departamento:")]
             [Required]
             [StringLength(60, MinimumLength = 3, ErrorMessage = "Oficina debe tener entre 3 y 60 caracteres!")]
             public string officeName { get; set; }

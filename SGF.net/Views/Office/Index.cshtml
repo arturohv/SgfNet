@@ -1,11 +1,15 @@
 ﻿
 @using SGF.net.Helpers.Bootstrap3
 @using Resources
+@using PagedList.Mvc;
 
-@model IEnumerable<SGF.net.Models.offices>
+
+@*@model IEnumerable<SGF.net.Models.offices>*@
+@model PagedList.IPagedList<SGF.net.Models.offices>
 
 @{
     ViewBag.Title = "SGF.net - Departamentos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="row">
@@ -17,14 +21,36 @@
 
                 @if (Model.Count() > 0)
                 {
+                    
+                    using (Html.BeginForm("Index", "Office", FormMethod.Get))
+                {
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label for="SearchString" class="col-md-3 control-label">Departamento:</label>
+                            <div class="col-md-7">                               
+                               @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new {@class = "form-control"})                         
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <span style="float: left">
+                                @Html.SubmitButtonBootstrap(@Resources.btnSearchText, Buttons.Default, new { @class = "min-width-100" })
+                            </span>
+                        </div>
+                       
+                    </form>            
+                 }   
+                    
+                     <br /> <br /> 
+                                       
                     <table class="table table-striped">
-
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.officeId)
+                                @*@Html.DisplayNameFor(model => model.officeId)*@
+                                Id
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.officeName)
+                                @*@Html.DisplayNameFor(model => model.officeName)*@
+                                Departamento
                             </th>
                             <th>                                
                                 <span style="float: right">
@@ -57,14 +83,23 @@
                         }
 
                     </table>
+                    
+                     <div style="text-align:center">
+                                <span>
+                                    @*Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount*@
+                                    @Html.PagedListPager(Model, page => Url.Action("Index",
+                                        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                                </span>
+                      </div>
 
                 }
                 else
                 {
                     <div class="clearfix"></div>
                     <div class="alert alert-info">
-                        <div class="no-results">No existen datos.</div>
+                        <div class="no-results">No existen datos.</div>                        
                     </div>
+                    @Html.ActionLinkBootstrap(@Resources.btnBackText, "Index", null, new { @class = "min-width-100" })
                 }
 
             </div>

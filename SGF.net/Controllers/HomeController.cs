@@ -4,10 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace SGF.net.Controllers
 {
     public class HomeController : Controller
-    {
+    {       
+        
         //
         // GET: /Home/
 
@@ -15,6 +17,8 @@ namespace SGF.net.Controllers
         {
             return View();
         }
+
+        
 
     }
 }

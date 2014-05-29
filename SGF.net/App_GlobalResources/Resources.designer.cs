@@ -131,5 +131,14 @@ namespace Resources {
                 return ResourceManager.GetString("btnSaveText", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Buscar.
+        /// </summary>
+        internal static string btnSearchText {
+            get {
+                return ResourceManager.GetString("btnSearchText", resourceCulture);
+            }
+        }
     }
 }

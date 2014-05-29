@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SGF.net.Models;
+using PagedList;
 
 namespace SGF.net.Controllers
 {
@@ -16,9 +17,48 @@ namespace SGF.net.Controllers
         //
         // GET: /Office/
 
-        public ActionResult Index()
+        //public ActionResult Index()
+        //{
+        //    return View(db.offices.ToList());
+        //}
+
+        public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            return View(db.offices.ToList());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var tbl = from s in db.offices
+
+                      select s;
+            tbl = tbl.Where(s => s.officeName != string.Empty);
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                tbl = tbl.Where(s => s.officeName.ToUpper().Contains(searchString.ToUpper()));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    tbl = tbl.OrderByDescending(s => s.officeName);
+                    break;
+
+                default:
+                    tbl = tbl.OrderBy(s => s.officeName);
+                    break;
+            }
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(tbl.ToPagedList(pageNumber, pageSize));
         }
 
         //
