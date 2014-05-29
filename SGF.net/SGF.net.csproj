@@ -140,6 +140,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\OfficeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -178,6 +179,7 @@
     <Compile Include="Models\members.cs">
       <DependentUpon>ModelXenosEN.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Metadata\memberMetadata.cs" />
     <Compile Include="Models\ModelXenosEN.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -270,6 +272,11 @@
     <Content Include="Views\Office\Create.cshtml" />
     <Content Include="Views\Office\Edit.cshtml" />
     <Content Include="Views\Office\Delete.cshtml" />
+    <Content Include="Views\Member\Index.cshtml" />
+    <Content Include="Views\Member\Details.cshtml" />
+    <Content Include="Views\Member\Create.cshtml" />
+    <Content Include="Views\Member\Edit.cshtml" />
+    <Content Include="Views\Member\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

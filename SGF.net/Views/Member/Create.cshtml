@@ -1,0 +1,133 @@
+﻿@model SGF.net.Models.members
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>members</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.memberId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.memberId)
+            @Html.ValidationMessageFor(model => model.memberId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.documentId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.documentId)
+            @Html.ValidationMessageFor(model => model.documentId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.firstName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.firstName)
+            @Html.ValidationMessageFor(model => model.firstName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.lastName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.lastName)
+            @Html.ValidationMessageFor(model => model.lastName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.maritalStatusId, "memberMaritalStatus")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("maritalStatusId", String.Empty)
+            @Html.ValidationMessageFor(model => model.maritalStatusId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.birthdate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.birthdate)
+            @Html.ValidationMessageFor(model => model.birthdate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.phoneNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.phoneNumber)
+            @Html.ValidationMessageFor(model => model.phoneNumber)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.cellNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.cellNumber)
+            @Html.ValidationMessageFor(model => model.cellNumber)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.address)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.address)
+            @Html.ValidationMessageFor(model => model.address)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.officeId, "offices")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("officeId", String.Empty)
+            @Html.ValidationMessageFor(model => model.officeId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.dischargedDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.dischargedDate)
+            @Html.ValidationMessageFor(model => model.dischargedDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.paymentTypeId, "memberPaymentTypes")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("paymentTypeId", String.Empty)
+            @Html.ValidationMessageFor(model => model.paymentTypeId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.active)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.active)
+            @Html.ValidationMessageFor(model => model.active)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
