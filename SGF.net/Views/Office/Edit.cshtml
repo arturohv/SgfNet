@@ -1,10 +1,61 @@
 ﻿@model SGF.net.Models.offices
+@using SGF.net.Helpers.Bootstrap3
+@using Resources
+
+
+
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "SGF.net - Departamentos - Editar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-sm-offset-2 col-sm-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading"><h4><strong>Editar Departamento</strong></h4></div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.officeId, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.officeId, new { @class = "form-control",  @readonly = true })                               
+                                @Html.ValidationMessageFor(model => model.officeName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.officeName, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.officeName, new { @class = "form-control" })                               
+                                @Html.ValidationMessageFor(model => model.officeName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        
+                         <div class="form-group">
+                            @Html.LabelFor(model => model.description, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.description, new { @class = "form-control" })    
+                                @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+                            </div>
+                        </div>                     
+                                              
+                    </div>
+                </div>
+                <div class="panel-footer text-center">                   
+                    @Html.SubmitButtonBootstrap(@Resources.btnSaveText, Buttons.Primary, new { @class = "min-width-100" })
+                    @Html.ActionLinkBootstrap(@Resources.btnCancelText, "Index", null, new { @class = "min-width-100" })
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@*<h2>Edit</h2>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
@@ -37,7 +88,7 @@
 
 <div>
     @Html.ActionLink("Back to List", "Index")
-</div>
+</div>*@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

@@ -4,6 +4,7 @@
 
 @{
     ViewBag.Title = "SGF.net - Departamentos - Agregar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @using (Html.BeginForm())
@@ -36,12 +37,9 @@
                                               
                     </div>
                 </div>
-                <div class="panel-footer text-center">
-                    @*<input type="submit" class="btn btn-default" value="Agregar" />          
-                    @Html.ActionLink("Cancelar", "Index", null, null, new { @class = "btn btn-default" })*@
+                <div class="panel-footer text-center">                   
                     @Html.SubmitButtonBootstrap(@Resources.btnSaveText, Buttons.Primary, new { @class = "min-width-100" })
                     @Html.ActionLinkBootstrap(@Resources.btnCancelText, "Index", null, new { @class = "min-width-100" })
-
                 </div>
             </div>
         </div>

@@ -50,7 +50,8 @@
                             </th>
                             <th>
                                 @*@Html.DisplayNameFor(model => model.officeName)*@
-                                Departamento
+                                @Html.ActionLink("Departamento", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+                                
                             </th>
                             <th>                                
                                 <span style="float: right">

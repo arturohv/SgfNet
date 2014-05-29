@@ -1,29 +1,51 @@
 ﻿@model SGF.net.Models.offices
+@using SGF.net.Helpers.Bootstrap3
+@using Resources
 
 @{
     ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<div class="row">
+    <div class="col-sm-offset-3 col-sm-10">
+        <div class="panel panel-default ">
+            <div class="panel-heading"><h4><strong>Detalle del Departamento</strong></h4></div>
+            <div class="panel-body">
+                <dl class="dl-horizontal dl-detalle">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.officeId)
+                    </dt>
 
-<fieldset>
-    <legend>offices</legend>
+                    <dd>
+                        @Html.DisplayFor(model => model.officeId)
+                    </dd>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.officeId)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.officeId)
-    </div>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.officeName)
+                    </dt>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.officeName)
+                    <dd>
+                        @Html.DisplayFor(model => model.officeName)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.description)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.description)
+                    </dd>
+
+                    
+                </dl>
+            </div>
+            <div class="panel-footer">
+                <div class="form-group text-center">
+                    @Html.ActionLinkBootstrap(@Resources.btnEditText, "Edit", new { id = Model.officeId }, new { @class = "min-width-100" }, Buttons.Primary)
+                    @Html.ActionLinkBootstrap(@Resources.btnBackText, "Index", null, new { @class = "min-width-100" })
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.officeName)
-    </div>
-</fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+</div>
