@@ -4,14 +4,14 @@ using System.Web.Mvc;
 
 namespace SGF.net.Models
 {
-    [MetadataTypeAttribute(typeof(offices.OfficesMetadata))]
+    [MetadataTypeAttribute(typeof(offices.MemberMaritalStatusMetadata))]
 
     //[Bind(Exclude = "officeId")] 
 	public partial class offices
 	{
-		internal sealed class OfficesMetadata{
+		internal sealed class MemberMaritalStatusMetadata{
 
-            private OfficesMetadata()
+            private MemberMaritalStatusMetadata()
             {
             }
 

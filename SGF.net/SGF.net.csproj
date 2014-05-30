@@ -179,6 +179,7 @@
     <Compile Include="Models\members.cs">
       <DependentUpon>ModelXenosEN.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Metadata\memberMaritalStatusMetadata.cs" />
     <Compile Include="Models\Metadata\memberMetadata.cs" />
     <Compile Include="Models\ModelXenosEN.Context.cs">
       <AutoGen>True</AutoGen>
