@@ -6,21 +6,70 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SGF.net.Models;
+using PagedList;
+
+
 
 namespace SGF.net.Controllers
 {
     public class MemberController : Controller
     {
         private XenosENEntities db = new XenosENEntities();
+        
+        
+       
+
 
         //
         // GET: /Member/
 
-        public ActionResult Index()
+        //public ActionResult Index()
+        //{
+        //    var members = db.members.Include(m => m.memberMaritalStatus).Include(m => m.memberPaymentTypes).Include(m => m.offices);
+        //    return View(members.ToList());
+        //}
+
+        public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            var members = db.members.Include(m => m.memberMaritalStatus).Include(m => m.memberPaymentTypes).Include(m => m.offices);
-            return View(members.ToList());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            
+
+            var tbl = from s in db.members.Include(m => m.memberMaritalStatus).Include(m => m.memberPaymentTypes).Include(m => m.offices)
+
+                      select s;
+            tbl = tbl.Where(s => s.documentId != string.Empty);
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                tbl = tbl.Where(s => s.documentId.ToUpper().Contains(searchString.ToUpper()));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    tbl = tbl.OrderByDescending(s => s.lastName);
+                    break;
+
+                default:
+                    tbl = tbl.OrderBy(s => s.lastName);
+                    break;
+            }
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(tbl.ToPagedList(pageNumber, pageSize));
         }
+               
 
         //
         // GET: /Member/Details/5

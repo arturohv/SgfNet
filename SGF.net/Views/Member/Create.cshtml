@@ -1,11 +1,86 @@
 ﻿@model SGF.net.Models.members
+@using SGF.net.Helpers.Bootstrap3
+@using Resources
+@using System.Collections
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "SGF.net - Asociados - Agregar";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 
-<h2>Create</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-sm-offset-2 col-sm-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4><strong>Nuevo Asociado</strong></h4>
+                </div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.documentId, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.documentId, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.documentId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.firstName, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.firstName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.firstName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.lastName, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.lastName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.lastName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.maritalStatusId, "memberMaritalStatus", new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                 @*@Html.DropDownList("maritalStatusId", String.Empty)*@
+                                
+                                @Html.DropDownListFor(m => m.maritalStatusId, new SelectList((IList)Model.memberMaritalStatus, "maritalStatusId", "name",Model.memberMaritalStatus))
+                                
+                                 
+                                                      
+                                 @Html.ValidationMessageFor(model => model.maritalStatusId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                      @*  <div class="editor-label">
+                            @Html.LabelFor(model => model.maritalStatusId, "memberMaritalStatus")
+                        </div>
+                        <div class="editor-field">
+                            @Html.DropDownList("maritalStatusId", String.Empty)
+                            @Html.ValidationMessageFor(model => model.maritalStatusId)
+                        </div>*@
+
+                    </div>
+                </div>
+                <div class="panel-footer text-center">
+                    @Html.SubmitButtonBootstrap(@Resources.btnSaveText, Buttons.Primary, new { @class = "min-width-100" })
+                    @Html.ActionLinkBootstrap(@Resources.btnCancelText, "Index", null, new { @class = "min-width-100" })
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+@*<h2>Create</h2>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
@@ -126,7 +201,7 @@
 
 <div>
     @Html.ActionLink("Back to List", "Index")
-</div>
+</div>*@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

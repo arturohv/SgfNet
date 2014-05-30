@@ -1,4 +1,5 @@
-﻿@model IEnumerable<SGF.net.Models.members>
+﻿@*@model IEnumerable<SGF.net.Models.members>*@
+@model PagedList.IPagedList<SGF.net.Models.members>
 @using SGF.net.Helpers.Bootstrap3
 @using Resources
 @using PagedList.Mvc;
@@ -8,7 +9,106 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<div class="row">
+    <div class="col-sm-offset-2 col-sm-12">
+
+        <div class="panel panel-primary">
+            <div class="panel-heading"><h4><strong>Lista de Asociados</strong></h4></div>
+            <div class="panel-body">
+
+                @if (Model.Count() > 0)
+                {
+                    
+                    using (Html.BeginForm("Index", "Member", FormMethod.Get))
+                {
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label for="SearchString" class="col-md-3 control-label">Cédula:</label>
+                            <div class="col-md-7">                               
+                               @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new {@class = "form-control"})                         
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <span style="float: left">
+                                @Html.SubmitButtonBootstrap(@Resources.btnSearchText, Buttons.Default, new { @class = "min-width-100" })
+                            </span>
+                        </div>
+                       
+                    </form>            
+                 }   
+                    
+                     <br /> <br /> 
+                                       
+                    <table class="table table-striped">
+                        <tr>
+                            <th>
+                                Cédula
+                            </th>
+                            <th>
+                                @Html.ActionLink("Apellido", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter }) 
+                            </th>
+                            <th>                                
+                                Nombre                               
+                            </th>
+                            <th>                                
+                                <span style="float: right">
+                                    @Html.ActionLinkBootstrap(@Resources.btnCreateText, "Create", Buttons.Default, Icons.Plus)
+                                </span>
+                            </th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.documentId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.lastName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.firstName)
+                                </td>
+
+                                <td class="text-right controls">
+                                    <div class="btn-group btn-group-sm control">
+                                        @*<a title="Detalles" href="@Url.Action("Details", "Office", new { id = item.officeId })" class="btn btn-default bg-warning"><span class="glyphicon glyphicon-list-alt"></span></a>
+                                        <a title="Editar" href="@Url.Action("Edit", "Office", new { id = item.officeId })" class="btn btn-default bg-info"><span class="glyphicon glyphicon-pencil"></span></a>
+                                        <a title="Eliminar" href="@Url.Action("Delete", "Office", new { id = item.officeId })" class="btn btn-default bg-danger"><span class="glyphicon glyphicon-remove"></span></a>*@
+                                         @Html.ActionLinkBootstrap(string.Empty, "Details", new { id = item.officeId }, null, Buttons.Default, Icons.List_Alt, @Resources.btnDetailsText)
+                                         @Html.ActionLinkBootstrap(string.Empty, "Edit", new { id = item.officeId }, null, Buttons.Default, Icons.Pencil, @Resources.btnEditText)
+                                         @Html.ActionLinkBootstrap(string.Empty, "Delete", new { id = item.officeId }, null, Buttons.Default, Icons.Remove, @Resources.btnDeleteText)
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+                    
+                     <div style="text-align:center">
+                                <span>
+                                    @*Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount*@
+                                    @Html.PagedListPager(Model, page => Url.Action("Index",
+                                        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                                </span>
+                      </div>
+
+                }
+                else
+                {
+                    <div class="clearfix"></div>
+                    <div class="alert alert-info">
+                        <div class="no-results">No existen datos.</div>                        
+                    </div>
+                    @Html.ActionLinkBootstrap(@Resources.btnBackText, "Index", null, new { @class = "min-width-100" })
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -106,4 +206,4 @@
     </tr>
 }
 
-</table>
+</table>*@
