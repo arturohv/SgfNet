@@ -19,10 +19,10 @@
                     <h4><strong>Nuevo Asociado</strong></h4>
                 </div>
                 <div class="panel-body">
-                    <div class="form-horizontal">
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-
+                    <div class="form-horizontal">      
+                        
+                       
+                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <div class="form-group">
                             @Html.LabelFor(model => model.documentId, new { @class = "col-md-2 control-label" })
                             <div class="col-md-10">
@@ -54,11 +54,11 @@
                                 @Html.ValidationMessageFor(model => model.maritalStatusId, "", new { @class = "text-danger" })
                             </div>
                         </div> 
-                        
+                       
                         <div class="form-group">
-                            @Html.LabelFor(model => model.birthdate, new { @class = "col-md-2 control-label" })
+                            @Html.LabelFor(model => model.birthdate, new {@class = "col-md-2 control-label" })
                             <div class="col-md-10">
-                                @Html.TextBoxFor(model => model.birthdate, new { @class = "form-control" })
+                                @Html.TextBoxFor(model => model.birthdate, new { @id="dp1", @class = "form-control" })
                                 
                                 @Html.ValidationMessageFor(model => model.birthdate, "", new { @class = "text-danger" })
                             </div>
@@ -97,9 +97,9 @@
                         </div> 
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.dischargedDate, new { @class = "col-md-2 control-label" })
+                            @Html.LabelFor(model => model.dischargedDate, new {@class = "col-md-2 control-label" })
                             <div class="col-md-10">
-                                @Html.TextBoxFor(model => model.dischargedDate, new { @class = "form-control" })
+                                @Html.TextBoxFor(model => model.dischargedDate, new {@id="dp2", @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.dischargedDate, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -131,9 +131,29 @@
             </div>
         </div>
     </div>
+    
+    <script type="text/javascript">
+        $(function(){
+            window.prettyPrint && prettyPrint();
+            $('#dp1').datepicker({
+                format: 'dd-mm-yyyy'
+            });
+
+            $('#dp2').datepicker({
+                format: 'dd-mm-yyyy'
+            });
+
+            $('#dp3').datepicker({
+                format: 'dd-mm-yyyy'
+            });
+        });
+      </script>
 }
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+    
+
+    
 
 
 }

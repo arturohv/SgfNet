@@ -6,10 +6,12 @@
          <title>@ViewBag.Title</title>
          @Styles.Render("~/Content/bootstrapcss")
          @RenderSection("scripts", required: false)
+         @Scripts.Render("~/bundles/jquery")
+         @Scripts.Render("~/bundles/bootstrapjs")  
          <link rel="stylesheet" type="text/css" href="/Content/Site.css" media="screen" />
     </head>
 <body id="estiloBody">
-  
+
     
 <div class="container" >
  <div class="row clearfix  hidden-xs visible-sm visible-md visible-lg"><br></div>
@@ -144,7 +146,6 @@
 @*</div>*@
 
 
- @Scripts.Render("~/bundles/jquery")
- @Scripts.Render("~/bundles/bootstrapjs")
+ 
 </body>
 </html>
