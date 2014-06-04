@@ -15,10 +15,10 @@ namespace SGF.net.Models
 
             [Key]
             [Required]
-            [DisplayName("Estado Civil:")]
+            [DisplayName("Estado Civil Id:")]
             public int maritalStatusId { get; set; }
             
-            [DisplayName("Estado Civil Nombre:")]
+            [DisplayName("Estado Civil:")]
             public string name { get; set; }
         }
     }

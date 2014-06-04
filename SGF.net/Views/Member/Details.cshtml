@@ -1,11 +1,130 @@
 ﻿@model SGF.net.Models.members
+@using SGF.net.Helpers.Bootstrap3
+@using Resources
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "SGF.net - Asociados - Detalles";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<div class="row">
+    <div class="col-sm-offset-3 col-sm-10">
+        <div class="panel panel-default ">
+            <div class="panel-heading"><h4><strong>Detalle del Asociado</strong></h4></div>
+            <div class="panel-body">
+                <dl class="dl-horizontal dl-detalle">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.documentId)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.documentId)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.firstName)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.firstName)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.lastName)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.lastName)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.memberMaritalStatus.name)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.memberMaritalStatus.name)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.birthdate)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.birthdate)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.phoneNumber)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.phoneNumber)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.cellNumber)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.cellNumber)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.address)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.address)
+                    </dd>
+
+                     <dt>
+                        @Html.DisplayNameFor(model => model.offices.officeName)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.offices.officeName)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.dischargedDate)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.dischargedDate)
+                    </dd>
+
+                     <dt>
+                        @Html.DisplayNameFor(model => model.memberPaymentTypes.name)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.memberPaymentTypes.name)
+                    </dd>
+
+                     <dt>
+                        @Html.DisplayNameFor(model => model.active)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.active)
+                    </dd>
+
+                    
+                </dl>
+            </div>
+            <div class="panel-footer">
+                <div class="form-group text-center">
+                    @Html.ActionLinkBootstrap(@Resources.btnEditText, "Edit", new { id = Model.officeId }, new { @class = "min-width-100" }, Buttons.Primary)
+                    @Html.ActionLinkBootstrap(@Resources.btnBackText, "Index", null, new { @class = "min-width-100" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@*<h2>Details</h2>
 
 <fieldset>
     <legend>members</legend>
@@ -104,4 +223,4 @@
 <p>
     @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
     @Html.ActionLink("Back to List", "Index")
-</p>
+</p>*@

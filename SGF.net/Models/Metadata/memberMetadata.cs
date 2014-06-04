@@ -45,7 +45,7 @@ namespace SGF.net.Models
             [DisplayName("Móvil:")]
             public string cellNumber { get; set; }
 
-            [DisplayName("Direcciòn:")]
+            [DisplayName("Dirección:")]
             public string address { get; set; }
 
             [DisplayName("Departamento:")]
