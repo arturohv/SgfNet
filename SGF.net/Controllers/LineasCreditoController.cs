@@ -10,16 +10,16 @@ using PagedList;
 
 namespace SGF.net.Controllers
 {
-    public class OfficeController : Controller
+    public class LineasCreditoController : Controller
     {
         private XenosENEntities db = new XenosENEntities();
 
         //
-        // GET: /Office/
+        // GET: /LineasCredito/
 
         //public ActionResult Index()
         //{
-        //    return View(db.offices.ToList());
+        //    return View(db.loanTypes.ToList());
         //}
 
         public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
@@ -38,22 +38,22 @@ namespace SGF.net.Controllers
 
             ViewBag.CurrentFilter = searchString;
 
-            var tbl = from s in db.offices
+            var tbl = from s in db.loanTypes
 
                       select s;
-            tbl = tbl.Where(s => s.officeName != string.Empty);
+            tbl = tbl.Where(s => s.name != string.Empty);
             if (!String.IsNullOrEmpty(searchString))
             {
-                tbl = tbl.Where(s => s.officeName.ToUpper().Contains(searchString.ToUpper()));
+                tbl = tbl.Where(s => s.name.ToUpper().Contains(searchString.ToUpper()));
             }
             switch (sortOrder)
             {
                 case "name_desc":
-                    tbl = tbl.OrderByDescending(s => s.officeName);
+                    tbl = tbl.OrderByDescending(s => s.name);
                     break;
 
                 default:
-                    tbl = tbl.OrderBy(s => s.officeName);
+                    tbl = tbl.OrderBy(s => s.name);
                     break;
             }
             int pageSize = 10;
@@ -62,20 +62,20 @@ namespace SGF.net.Controllers
         }
 
         //
-        // GET: /Office/Details/5
+        // GET: /LineasCredito/Details/5
 
         public ActionResult Details(int id = 0)
         {
-            offices offices = db.offices.Find(id);
-            if (offices == null)
+            loanTypes loantypes = db.loanTypes.Find(id);
+            if (loantypes == null)
             {
                 return HttpNotFound();
             }
-            return View(offices);
+            return View(loantypes);
         }
 
         //
-        // GET: /Office/Create
+        // GET: /LineasCredito/Create
 
         public ActionResult Create()
         {
@@ -83,73 +83,73 @@ namespace SGF.net.Controllers
         }
 
         //
-        // POST: /Office/Create
+        // POST: /LineasCredito/Create
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(offices offices)
+        public ActionResult Create(loanTypes loantypes)
         {
             if (ModelState.IsValid)
             {
-                db.offices.Add(offices);
+                db.loanTypes.Add(loantypes);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(offices);
+            return View(loantypes);
         }
 
         //
-        // GET: /Office/Edit/5
+        // GET: /LineasCredito/Edit/5
 
         public ActionResult Edit(int id = 0)
         {
-            offices offices = db.offices.Find(id);
-            if (offices == null)
+            loanTypes loantypes = db.loanTypes.Find(id);
+            if (loantypes == null)
             {
                 return HttpNotFound();
             }
-            return View(offices);
+            return View(loantypes);
         }
 
         //
-        // POST: /Office/Edit/5
+        // POST: /LineasCredito/Edit/5
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(offices offices)
+        public ActionResult Edit(loanTypes loantypes)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(offices).State = EntityState.Modified;
+                db.Entry(loantypes).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(offices);
+            return View(loantypes);
         }
 
         //
-        // GET: /Office/Delete/5
+        // GET: /LineasCredito/Delete/5
 
         public ActionResult Delete(int id = 0)
         {
-            offices offices = db.offices.Find(id);
-            if (offices == null)
+            loanTypes loantypes = db.loanTypes.Find(id);
+            if (loantypes == null)
             {
                 return HttpNotFound();
             }
-            return View(offices);
+            return View(loantypes);
         }
 
         //
-        // POST: /Office/Delete/5
+        // POST: /LineasCredito/Delete/5
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            offices offices = db.offices.Find(id);
-            db.offices.Remove(offices);
+            loanTypes loantypes = db.loanTypes.Find(id);
+            db.loanTypes.Remove(loantypes);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

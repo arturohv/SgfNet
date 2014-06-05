@@ -140,6 +140,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LineasCreditoController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\OfficeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -318,6 +319,11 @@
     <Content Include="Views\Member\Create.cshtml" />
     <Content Include="Views\Member\Edit.cshtml" />
     <Content Include="Views\Member\Delete.cshtml" />
+    <Content Include="Views\LineasCredito\Index.cshtml" />
+    <Content Include="Views\LineasCredito\Details.cshtml" />
+    <Content Include="Views\LineasCredito\Create.cshtml" />
+    <Content Include="Views\LineasCredito\Edit.cshtml" />
+    <Content Include="Views\LineasCredito\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

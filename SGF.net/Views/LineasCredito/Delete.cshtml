@@ -1,0 +1,90 @@
+﻿@model SGF.net.Models.loanTypes
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>loanTypes</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.loanTypeId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.loanTypeId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.description)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.amount)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.amount)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.interestRate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.interestRate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.monthTerm)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.monthTerm)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.paymentMonth)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.paymentMonth)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.totalPayments)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.totalPayments)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.totalAmount)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.totalAmount)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.amountFee)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.amountFee)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

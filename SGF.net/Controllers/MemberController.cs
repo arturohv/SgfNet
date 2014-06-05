@@ -15,11 +15,6 @@ namespace SGF.net.Controllers
     public class MemberController : Controller
     {
         private XenosENEntities db = new XenosENEntities();
-        
-        
-       
-
-
         //
         // GET: /Member/
 
@@ -65,7 +60,7 @@ namespace SGF.net.Controllers
                     tbl = tbl.OrderBy(s => s.lastName);
                     break;
             }
-            int pageSize = 3;
+            int pageSize = 10;
             int pageNumber = (page ?? 1);
             return View(tbl.ToPagedList(pageNumber, pageSize));
         }

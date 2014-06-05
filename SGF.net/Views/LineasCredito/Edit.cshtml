@@ -1,0 +1,109 @@
+﻿@model SGF.net.Models.loanTypes
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>loanTypes</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.loanTypeId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.loanTypeId)
+            @Html.ValidationMessageFor(model => model.loanTypeId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.name)
+            @Html.ValidationMessageFor(model => model.name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.description)
+            @Html.ValidationMessageFor(model => model.description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.amount)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.amount)
+            @Html.ValidationMessageFor(model => model.amount)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.interestRate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.interestRate)
+            @Html.ValidationMessageFor(model => model.interestRate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.monthTerm)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.monthTerm)
+            @Html.ValidationMessageFor(model => model.monthTerm)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.paymentMonth)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.paymentMonth)
+            @Html.ValidationMessageFor(model => model.paymentMonth)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.totalPayments)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.totalPayments)
+            @Html.ValidationMessageFor(model => model.totalPayments)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.totalAmount)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.totalAmount)
+            @Html.ValidationMessageFor(model => model.totalAmount)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.amountFee)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.amountFee)
+            @Html.ValidationMessageFor(model => model.amountFee)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
