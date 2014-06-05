@@ -180,6 +180,7 @@
     <Compile Include="Models\members.cs">
       <DependentUpon>ModelXenosEN.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Metadata\loanTypesMetadata.cs" />
     <Compile Include="Models\Metadata\memberMaritalStatusMetadata.cs" />
     <Compile Include="Models\Metadata\memberMetadata.cs" />
     <Compile Include="Models\Metadata\memberPaymentTypesMetadata.cs" />

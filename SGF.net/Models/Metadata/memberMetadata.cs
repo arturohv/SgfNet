@@ -19,23 +19,23 @@ namespace SGF.net.Models
             public int memberId { get; set; }
 
             [DisplayName("Cédula:")]
-            [Required]
+            [Required(ErrorMessage = "Este Campo es Requerido")]
             public string documentId { get; set; }
 
             [DisplayName("Nombre:")]
-            [Required]
+            [Required(ErrorMessage = "Este Campo es Requerido")]
             public string firstName { get; set; }
 
             [DisplayName("Apellidos:")]
-            [Required]
+            [Required(ErrorMessage = "Este Campo es Requerido")]
             public string lastName { get; set; }
 
             [DisplayName("Estado Civil:")]
-            [Required]
+            [Required(ErrorMessage = "Este Campo es Requerido")]
             public int maritalStatusId { get; set; }
 
             [DisplayName("Fecha Nacimiento:")]
-            [Required]
+            [Required(ErrorMessage = "Este Campo es Requerido")]
             [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
             public System.DateTime birthdate { get; set; }
 
@@ -49,15 +49,15 @@ namespace SGF.net.Models
             public string address { get; set; }
 
             [DisplayName("Departamento:")]
-            [Required]
+            [Required(ErrorMessage = "Este Campo es Requerido")]
             public int officeId { get; set; }
 
             [DisplayName("Fecha Ingreso:")]
-            [Required]
+            [Required(ErrorMessage = "Este Campo es Requerido")]
             public System.DateTime dischargedDate { get; set; }
 
             [DisplayName("Tipo de Pago:")]
-            [Required]
+            [Required(ErrorMessage = "Este Campo es Requerido")]
             public int paymentTypeId { get; set; }
 
             [DisplayName("Activo:")]            
