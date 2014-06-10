@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SGF.net.Models;
+using PagedList;
 
 namespace SGF.net.Controllers
 {
@@ -16,10 +17,51 @@ namespace SGF.net.Controllers
         //
         // GET: /Creditos/
 
-        public ActionResult Index()
+        //public ActionResult Index()
+        //{
+        //    var memberloans = db.memberLoans.Include(m => m.loanTypes).Include(m => m.memberLoansStatus).Include(m => m.members);
+        //    return View(memberloans.ToList());
+        //}
+
+        public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            var memberloans = db.memberLoans.Include(m => m.loanTypes).Include(m => m.memberLoansStatus).Include(m => m.members);
-            return View(memberloans.ToList());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+
+
+            var tbl = from s in db.memberLoans.Include(m => m.loanTypes).Include(m => m.memberLoansStatus).Include(m => m.members)
+
+                      select s;
+            tbl = tbl.Where(s => s.members.memberId != 0);
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                tbl = tbl.Where(s => s.members.memberId == int.Parse(searchString.ToString()));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    tbl = tbl.OrderByDescending(s => s.memberLoansStatus.name);
+                    break;
+
+                default:
+                    tbl = tbl.OrderBy(s => s.memberLoansStatus.name);
+                    break;
+            }
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(tbl.ToPagedList(pageNumber, pageSize));
         }
 
         //
