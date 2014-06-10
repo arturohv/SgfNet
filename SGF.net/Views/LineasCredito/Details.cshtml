@@ -1,86 +1,108 @@
 ﻿@model SGF.net.Models.loanTypes
+@using SGF.net.Helpers.Bootstrap3
+@using Resources
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "SGF.net - Lineas de Credito - Detalles";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<div class="row">
+    <div class="col-sm-offset-3 col-sm-10">
+        <div class="panel panel-default ">
+            <div class="panel-heading"><h4><strong>Detalle del Asociado</strong></h4></div>
+            <div class="panel-body">
+                <dl class="dl-horizontal dl-detalle">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.loanTypeId)
+                    </dt>
 
-<fieldset>
-    <legend>loanTypes</legend>
+                    <dd>
+                        @Html.DisplayFor(model => model.loanTypeId)
+                    </dd>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.loanTypeId)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.loanTypeId)
-    </div>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.name)
+                    </dt>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.name)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.name)
-    </div>
+                    <dd>
+                        @Html.DisplayFor(model => model.name)
+                    </dd>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.description)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.description)
-    </div>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.description)
+                    </dt>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.amount)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.amount)
-    </div>
+                    <dd>
+                        @Html.DisplayFor(model => model.description)
+                    </dd>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.interestRate)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.interestRate)
-    </div>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.amount)
+                    </dt>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.monthTerm)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.monthTerm)
-    </div>
+                    <dd>
+                        @Html.DisplayFor(model => model.amount)
+                    </dd>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.paymentMonth)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.paymentMonth)
-    </div>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.interestRate)
+                    </dt>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.totalPayments)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.totalPayments)
-    </div>
+                    <dd>
+                        @Html.DisplayFor(model => model.interestRate)
+                    </dd>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.totalAmount)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.totalAmount)
-    </div>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.monthTerm)
+                    </dt>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.amountFee)
+                    <dd>
+                        @Html.DisplayFor(model => model.monthTerm)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.paymentMonth)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.paymentMonth)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.totalPayments)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.totalPayments)
+                    </dd>
+
+                     <dt>
+                        @Html.DisplayNameFor(model => model.totalAmount)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.totalAmount)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.amountFee)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.amountFee)
+                    </dd>          
+
+                    
+                </dl>
+            </div>
+            <div class="panel-footer">
+                <div class="form-group text-center">
+                    @Html.ActionLinkBootstrap(@Resources.btnEditText, "Edit", new { id = Model.loanTypeId }, new { @class = "min-width-100" }, Buttons.Primary)
+                    @Html.ActionLinkBootstrap(@Resources.btnBackText, "Index", null, new { @class = "min-width-100" })
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.amountFee)
-    </div>
-</fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+</div>
+

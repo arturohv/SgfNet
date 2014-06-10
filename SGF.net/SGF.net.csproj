@@ -139,6 +139,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CreditosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LineasCreditoController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
@@ -325,6 +326,11 @@
     <Content Include="Views\LineasCredito\Create.cshtml" />
     <Content Include="Views\LineasCredito\Edit.cshtml" />
     <Content Include="Views\LineasCredito\Delete.cshtml" />
+    <Content Include="Views\Creditos\Index.cshtml" />
+    <Content Include="Views\Creditos\Details.cshtml" />
+    <Content Include="Views\Creditos\Create.cshtml" />
+    <Content Include="Views\Creditos\Edit.cshtml" />
+    <Content Include="Views\Creditos\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,65 @@
+﻿@model SGF.net.Models.memberLoans
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>memberLoans</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.memberLoanId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.memberLoanId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.members.documentId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.members.documentId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.loanTypes.name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.loanTypes.name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.memberLoansStatus.name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.memberLoansStatus.name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.appDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.appDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.aprDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.aprDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Notes)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Notes)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

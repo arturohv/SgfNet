@@ -20,14 +20,17 @@ namespace SGF.net.Models
 
             [DisplayName("Cédula:")]
             [Required(ErrorMessage = "Este Campo es Requerido")]
+            [StringLength(20, MinimumLength = 9, ErrorMessage = "Cédula debe tener entre 9 y 20 caracteres!")]
             public string documentId { get; set; }
 
             [DisplayName("Nombre:")]
             [Required(ErrorMessage = "Este Campo es Requerido")]
+            [StringLength(20, MinimumLength = 1, ErrorMessage = "Nombre debe tener entre 1 y 20 caracteres!")]
             public string firstName { get; set; }
 
             [DisplayName("Apellidos:")]
             [Required(ErrorMessage = "Este Campo es Requerido")]
+            [StringLength(40, MinimumLength = 1, ErrorMessage = "Cédula debe tener entre 1 y 40 caracteres!")]
             public string lastName { get; set; }
 
             [DisplayName("Estado Civil:")]
@@ -46,6 +49,7 @@ namespace SGF.net.Models
             public string cellNumber { get; set; }
 
             [DisplayName("Dirección:")]
+            [StringLength(300, ErrorMessage = "Dirección no debe tener más de 300 caracteres!")]
             public string address { get; set; }
 
             [DisplayName("Departamento:")]
@@ -54,6 +58,7 @@ namespace SGF.net.Models
 
             [DisplayName("Fecha Ingreso:")]
             [Required(ErrorMessage = "Este Campo es Requerido")]
+            [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
             public System.DateTime dischargedDate { get; set; }
 
             [DisplayName("Tipo de Pago:")]

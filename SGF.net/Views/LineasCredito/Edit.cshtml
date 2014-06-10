@@ -1,109 +1,95 @@
 ﻿@model SGF.net.Models.loanTypes
+@using SGF.net.Helpers.Bootstrap3
+@using Resources
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "SGF.net - Lineas de Credito - Editar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
-
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+    <div class="row">
+        <div class="col-sm-offset-2 col-sm-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4><strong>Editar Línea de Crédito</strong></h4>
+                </div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        
+                         <div class="form-group">
+                            @Html.LabelFor(model => model.loanTypeId, new { @class = "col-md-3 control-label" })
+                            <div class="col-md-9">
+                                @Html.TextBoxFor(model => model.loanTypeId, new { @class = "form-control", @readonly="true" })
+                                @Html.ValidationMessageFor(model => model.loanTypeId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.name, new { @class = "col-md-3 control-label" })
+                            <div class="col-md-9">
+                                @Html.TextBoxFor(model => model.name, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-    <fieldset>
-        <legend>loanTypes</legend>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.description, new { @class = "col-md-3 control-label" })
+                            <div class="col-md-9">
+                                @Html.TextBoxFor(model => model.description, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.loanTypeId)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.loanTypeId)
-            @Html.ValidationMessageFor(model => model.loanTypeId)
-        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.amount, new { @class = "col-md-3 control-label" })
+                            <div class="col-md-9">
+                               
+                                @Html.TextBoxFor(model => model.amount,  new { @class = "form-control"})
+                                @Html.ValidationMessageFor(model => model.amount, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.name)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.name)
-            @Html.ValidationMessageFor(model => model.name)
-        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.interestRate, new { @class = "col-md-3 control-label" })
+                            <div class="col-md-9">
+                                @Html.TextBoxFor(model => model.interestRate, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.interestRate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.description)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.description)
-            @Html.ValidationMessageFor(model => model.description)
-        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.monthTerm, new { @class = "col-md-3 control-label" })
+                            <div class="col-md-9">
+                                @Html.TextBoxFor(model => model.monthTerm, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.monthTerm, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.amount)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.amount)
-            @Html.ValidationMessageFor(model => model.amount)
-        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.paymentMonth, new { @class = "col-md-3 control-label" })
+                            <div class="col-md-9">
+                                @Html.TextBoxFor(model => model.paymentMonth, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.paymentMonth, "", new { @class = "text-danger" })
+                            </div>
+                        </div>                       
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.interestRate)
+                    </div>
+                </div>
+                <div class="panel-footer text-center">
+                    @Html.SubmitButtonBootstrap(@Resources.btnSaveText, Buttons.Primary, new { @class = "min-width-100" })
+                    @Html.ActionLinkBootstrap(@Resources.btnCancelText, "Index", null, new { @class = "min-width-100" })
+                </div>
+            </div>
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.interestRate)
-            @Html.ValidationMessageFor(model => model.interestRate)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.monthTerm)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.monthTerm)
-            @Html.ValidationMessageFor(model => model.monthTerm)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.paymentMonth)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.paymentMonth)
-            @Html.ValidationMessageFor(model => model.paymentMonth)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.totalPayments)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.totalPayments)
-            @Html.ValidationMessageFor(model => model.totalPayments)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.totalAmount)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.totalAmount)
-            @Html.ValidationMessageFor(model => model.totalAmount)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.amountFee)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.amountFee)
-            @Html.ValidationMessageFor(model => model.amountFee)
-        </div>
-
-        <p>
-            <input type="submit" value="Save" />
-        </p>
-    </fieldset>
+    </div>
+    
+    
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+

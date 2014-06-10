@@ -1,0 +1,70 @@
+﻿@model IEnumerable<SGF.net.Models.memberLoans>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.memberLoanId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.members.documentId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.loanTypes.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.memberLoansStatus.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.appDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.aprDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Notes)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.memberLoanId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.members.documentId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.loanTypes.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.memberLoansStatus.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.appDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.aprDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Notes)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

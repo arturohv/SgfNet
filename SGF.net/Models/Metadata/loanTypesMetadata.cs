@@ -21,17 +21,19 @@ namespace SGF.net.Models
             [DisplayName("Id Tipo Crédito:")]
             public int loanTypeId { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "Este Campo es Requerido")]
+            [StringLength(40, MinimumLength = 1, ErrorMessage = "Nombre debe tener entre 1 y 40 caracteres!")]
             [DisplayName("Nombre:")]
             public string name { get; set; }
-            
-            [Required]
+
+            [Required(ErrorMessage = "Este Campo es Requerido")]
+            [StringLength(200, MinimumLength = 1, ErrorMessage = "Descripción debe tener entre 1 y 40 caracteres!")]
             [DisplayName("Descripción:")]
             public string description { get; set; }
 
             [Required]
             [DisplayName("Monto:")]
-            [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:C}")]
+            [DataType(DataType.Currency), DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:C}")]
             public decimal amount { get; set; }
 
             [Required]
@@ -55,11 +57,11 @@ namespace SGF.net.Models
             public int? totalPayments { get; set; }
 
             [DisplayName("Total Préstamo:")]
-            [DisplayFormat(DataFormatString = "{0:#,###0.00}")]
+            [DataType(DataType.Currency), DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:C}")]
             public decimal? totalAmount { get; set; }
 
             [DisplayName("Monto Cuota:")]
-            [DisplayFormat(DataFormatString = "{0:#,###0.00}")]
+            [DataType(DataType.Currency), DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:C}")]
             public decimal? amountFee { get; set; }
 
             
