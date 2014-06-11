@@ -68,6 +68,9 @@ namespace SGF.net.Models
             [DisplayName("Activo:")]            
             public bool active { get; set; }
 
+            [DisplayName("Nombre Completo:")]  
+            public string fullname { get { return firstName + " " + lastName; } }
+
             
             //public virtual memberMaritalStatus memberMaritalStatus { get; set; }
             //public virtual memberPaymentTypes memberPaymentTypes { get; set; }

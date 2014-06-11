@@ -53,11 +53,11 @@ namespace SGF.net.Controllers
             switch (sortOrder)
             {
                 case "name_desc":
-                    tbl = tbl.OrderByDescending(s => s.lastName);
+                    tbl = tbl.OrderByDescending(s => s.fullname);
                     break;
 
                 default:
-                    tbl = tbl.OrderBy(s => s.lastName);
+                    tbl = tbl.OrderBy(s => s.fullname);
                     break;
             }
             int pageSize = 10;

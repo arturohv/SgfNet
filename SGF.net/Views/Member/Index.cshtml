@@ -45,11 +45,11 @@
                                 Cédula
                             </th>
                             <th>
-                                @Html.ActionLink("Apellido", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter }) 
+                                @Html.ActionLink("Nombre Completo", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter }) 
                             </th>
-                            <th>                                
+                            @*<th>                                
                                 Nombre                               
-                            </th>
+                            </th>*@
                             <th>                                
                                 <span style="float: right">
                                     @Html.ActionLinkBootstrap(@Resources.btnCreateText, "Create", Buttons.Default, Icons.Plus)
@@ -64,11 +64,11 @@
                                     @Html.DisplayFor(modelItem => item.documentId)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.lastName)
+                                    @Html.DisplayFor(modelItem => item.fullname)
                                 </td>
-                                <td>
+                                @*<td>
                                     @Html.DisplayFor(modelItem => item.firstName)
-                                </td>
+                                </td>*@
 
                                 <td class="text-right controls">
                                     <div class="btn-group btn-group-sm control">

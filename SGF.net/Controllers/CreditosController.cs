@@ -25,6 +25,9 @@ namespace SGF.net.Controllers
 
         public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
+
+           
+
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
 
@@ -44,10 +47,10 @@ namespace SGF.net.Controllers
             var tbl = from s in db.memberLoans.Include(m => m.loanTypes).Include(m => m.memberLoansStatus).Include(m => m.members)
 
                       select s;
-            tbl = tbl.Where(s => s.members.memberId != 0);
+            tbl = tbl.Where(s => s.members.documentId != string.Empty);
             if (!String.IsNullOrEmpty(searchString))
             {
-                tbl = tbl.Where(s => s.members.memberId == int.Parse(searchString.ToString()));
+                tbl = tbl.Where(s => s.members.documentId.ToUpper().Contains(searchString.ToUpper()));
             }
             switch (sortOrder)
             {
@@ -67,9 +70,9 @@ namespace SGF.net.Controllers
         //
         // GET: /Creditos/Details/5
 
-        public ActionResult Details(int id = 0)
+        public ActionResult Details(int id = 0, int id2 = 0)
         {
-            memberLoans memberloans = db.memberLoans.Find(id);
+            memberLoans memberloans = db.memberLoans.Find(id,id2);
             if (memberloans == null)
             {
                 return HttpNotFound();
@@ -84,7 +87,10 @@ namespace SGF.net.Controllers
         {
             ViewBag.loanTypeId = new SelectList(db.loanTypes, "loanTypeId", "name");
             ViewBag.memberLoanStatusId = new SelectList(db.memberLoansStatus, "memberLoanStatusId", "name");
-            ViewBag.memberId = new SelectList(db.members, "memberId", "documentId");
+            ViewBag.memberId = new SelectList(db.members, "memberId", "fullname");
+
+           
+
             return View();
         }
 
@@ -111,9 +117,9 @@ namespace SGF.net.Controllers
         //
         // GET: /Creditos/Edit/5
 
-        public ActionResult Edit(int id = 0)
+        public ActionResult Edit(int id = 0, int id2 = 0)
         {
-            memberLoans memberloans = db.memberLoans.Find(id);
+            memberLoans memberloans = db.memberLoans.Find(id, id2);
             if (memberloans == null)
             {
                 return HttpNotFound();
@@ -146,9 +152,9 @@ namespace SGF.net.Controllers
         //
         // GET: /Creditos/Delete/5
 
-        public ActionResult Delete(int id = 0)
+        public ActionResult Delete(int id = 0, int id2 = 0)
         {
-            memberLoans memberloans = db.memberLoans.Find(id);
+            memberLoans memberloans = db.memberLoans.Find(id,id2);
             if (memberloans == null)
             {
                 return HttpNotFound();
@@ -161,9 +167,9 @@ namespace SGF.net.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id, int id2)
         {
-            memberLoans memberloans = db.memberLoans.Find(id);
+            memberLoans memberloans = db.memberLoans.Find(id,id2);
             db.memberLoans.Remove(memberloans);
             db.SaveChanges();
             return RedirectToAction("Index");

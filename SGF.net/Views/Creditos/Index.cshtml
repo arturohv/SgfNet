@@ -19,11 +19,11 @@
                 @if (Model.Count() > 0)
                 {
                     
-                    using (Html.BeginForm("Index", "Member", FormMethod.Get))
+                    using (Html.BeginForm("Index", "Creditos", FormMethod.Get))
                 {
                     <form class="form-horizontal" role="form">
                         <div class="form-group">
-                            <label for="SearchString" class="col-md-4 control-label">Buscar por Asociado:</label>
+                            <label for="SearchString" class="col-md-4 control-label">Buscar por Cédula:</label>
                             <div class="col-md-6">                               
                                @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new {@class = "form-control"})                         
                             </div>
@@ -45,13 +45,13 @@
                                 Id Crédito
                             </th>
                             <th>
-                                Asociado (Apellidos)
+                              @Html.ActionLink("Nombre Completo", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })  
                             </th>
-                             <th>
+                            @* <th>
                                 Asociado (Nombre)
-                            </th>
+                            </th>*@
                             <th>                                
-                                @Html.ActionLink("Estado", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })                                
+                                Estado                              
                             </th>
                             <th>                                
                                 <span style="float: right">
@@ -67,11 +67,11 @@
                                     @Html.DisplayFor(modelItem => item.memberLoanId)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.members.lastName)
+                                    @Html.DisplayFor(modelItem => item.members.fullname)
                                 </td>
-                                <td>
+                                @*<td>
                                     @Html.DisplayFor(modelItem => item.members.firstName)
-                                </td>
+                                </td>*@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.memberLoansStatus.name)
                                 </td>
@@ -81,9 +81,9 @@
                                         @*<a title="Detalles" href="@Url.Action("Details", "Office", new { id = item.officeId })" class="btn btn-default bg-warning"><span class="glyphicon glyphicon-list-alt"></span></a>
                                         <a title="Editar" href="@Url.Action("Edit", "Office", new { id = item.officeId })" class="btn btn-default bg-info"><span class="glyphicon glyphicon-pencil"></span></a>
                                         <a title="Eliminar" href="@Url.Action("Delete", "Office", new { id = item.officeId })" class="btn btn-default bg-danger"><span class="glyphicon glyphicon-remove"></span></a>*@
-                                         @Html.ActionLinkBootstrap(string.Empty, "Details", new { id = item.memberLoanId }, null, Buttons.Default, Icons.List_Alt, @Resources.btnDetailsText)
-                                         @Html.ActionLinkBootstrap(string.Empty, "Edit", new { id = item.memberLoanId }, null, Buttons.Default, Icons.Pencil, @Resources.btnEditText)
-                                         @Html.ActionLinkBootstrap(string.Empty, "Delete", new { id = item.memberLoanId }, null, Buttons.Default, Icons.Remove, @Resources.btnDeleteText)
+                                         @Html.ActionLinkBootstrap(string.Empty, "Details", new { id = item.memberLoanId, id2 = item.memberId }, null, Buttons.Default, Icons.List_Alt, @Resources.btnDetailsText)
+                                         @Html.ActionLinkBootstrap(string.Empty, "Edit", new { id = item.memberLoanId, id2 = item.memberId }, null, Buttons.Default, Icons.Pencil, @Resources.btnEditText)
+                                         @Html.ActionLinkBootstrap(string.Empty, "Delete", new { id = item.memberLoanId, id2 = item.memberId }, null, Buttons.Default, Icons.Remove, @Resources.btnDeleteText)
                                     </div>
                                 </td>
                             </tr>

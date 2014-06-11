@@ -1,11 +1,87 @@
 ﻿@model SGF.net.Models.memberLoans
+@using SGF.net.Helpers.Bootstrap3
+@using Resources
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "SGF.net - Créditos - Agregar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-sm-offset-2 col-sm-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4><strong>Nuevo Crédito</strong></h4>
+                </div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.Label("memberId", "Asociado:", new { @class = "col-md-3 control-label" })
+                            <div class="col-md-9">
+                                @Html.DropDownList("memberId", null, htmlAttributes: new { @class = "form-control show-tick" })
+                                @Html.ValidationMessageFor(model => model.members.memberId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>                       
+
+                        <div class="form-group">
+                            @Html.Label("loanTypeId", "Tipo de Crédito:", new { @class = "col-md-3 control-label" })
+                            <div class="col-md-9">
+                                @Html.DropDownList("loanTypeId", null, htmlAttributes: new { @class = "form-control show-tick" })
+                                @Html.ValidationMessageFor(model => model.loanTypes.loanTypeId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("memberLoanStatusId", "Estado del Crédito:", new { @class = "col-md-3 control-label" })
+                            <div class="col-md-9">
+                                @Html.DropDownList("memberLoanStatusId", null, htmlAttributes: new { @class = "form-control show-tick" })
+                                @Html.ValidationMessageFor(model => model.memberLoansStatus.memberLoanStatusId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.appDate, new { @class = "col-md-3 control-label" })
+                            <div class="col-md-9">
+                                @Html.TextBoxFor(model => model.appDate, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.appDate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Notes, new { @class = "col-md-3 control-label" })
+                            <div class="col-md-9">
+                                @Html.TextBoxFor(model => model.Notes, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Notes, "", new { @class = "text-danger" })
+                            </div>
+                        </div>                   
+
+                    </div>
+                </div>
+                <div class="panel-footer text-center">
+                    @Html.SubmitButtonBootstrap(@Resources.btnSaveText, Buttons.Primary, new { @class = "min-width-100" })
+                    @Html.ActionLinkBootstrap(@Resources.btnCancelText, "Index", null, new { @class = "min-width-100" })
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+
+
+
+}
+
+
+@*<h2>Create</h2>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
@@ -82,4 +158,4 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-}
+}*@

@@ -33,6 +33,7 @@ namespace SGF.net.Models
         public System.DateTime dischargedDate { get; set; }
         public int paymentTypeId { get; set; }
         public bool active { get; set; }
+        public string fullname { get { return firstName + " " + lastName; } }
     
         public virtual ICollection<memberChilds> memberChilds { get; set; }
         public virtual ICollection<memberLoans> memberLoans { get; set; }
