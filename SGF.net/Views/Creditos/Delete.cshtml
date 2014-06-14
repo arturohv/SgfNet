@@ -1,11 +1,89 @@
 ﻿@model SGF.net.Models.memberLoans
+@using SGF.net.Helpers.Bootstrap3
+@using Resources
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "SGF.net - Crédito - Eliminar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Delete</h2>
+<div class="row">
+    <div class="col-sm-offset-2 col-sm-12">
+        <div class="panel panel-primary ">
+            <div class="panel-heading"><h4><b>Eliminar Crédito</b></h4></div>
+            <div class="panel-body">
+                
+                <h4>¿Está seguro que desea eliminar este registro? </h4>
+                <br />
+                <dl class="dl-horizontal  dl-detalle">
+                    <dt>
+                        @*@Html.DisplayNameFor(model => model.memberLoanId)*@
+                        Operación #
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.memberLoanId)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.members.documentId)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.members.documentId)
+                    </dd>
+                    
+                    <dt>
+                        @Html.DisplayNameFor(model => model.members.fullname)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.members.fullname)
+                    </dd>
+                    
+                     <dt>
+                        @*@Html.DisplayNameFor(model => model.memberLoansStatus.name)*@
+                        Estado
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.memberLoansStatus.name)
+                    </dd>  
+                    
+                     <dt>
+                        @Html.DisplayNameFor(model => model.appDate)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.appDate)
+                    </dd>           
+                    
+                     <dt>
+                        @Html.DisplayNameFor(model => model.aprDate)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.aprDate)
+                    </dd>                    
+                                        
+                </dl>
+
+            </div>
+            <div class="panel-footer">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="text-center">
+                        @Html.SubmitButtonBootstrap(@Resources.btnDeleteText, Buttons.Primary, new { @class = "min-width-100" })
+                        @Html.ActionLinkBootstrap(@Resources.btnCancelText, "Index", null, new { @class = "min-width-100" })
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<h2>Delete</h2>
 
 <h3>Are you sure you want to delete this?</h3>
 <fieldset>
@@ -66,4 +144,4 @@
         <input type="submit" value="Delete" /> |
         @Html.ActionLink("Back to List", "Index")
     </p>
-}
+}*@

@@ -1,13 +1,117 @@
 ﻿@model SGF.net.Models.memberLoans
+@using SGF.net.Helpers.Bootstrap3
+@using Resources
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "SGF.net - Editar - Credito";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-sm-offset-2 col-sm-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4><strong>Editar Crédito</strong></h4>
+                </div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-@using (Html.BeginForm()) {
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.memberLoanId, new { @class = "col-md-3 control-label" })
+                            <div class="col-md-9">
+                                @Html.TextBoxFor(model => model.memberLoanId, new { @class = "form-control", @readonly="true" })
+                                @Html.ValidationMessageFor(model => model.memberLoanId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("memberId", "Asociado:", new { @class = "col-md-3 control-label" })
+                            <div class="col-md-9">
+                                @Html.DropDownList("memberId", null, htmlAttributes: new { @class = "form-control show-tick", @readonly="true" })
+                                @Html.ValidationMessageFor(model => model.members.memberId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>                       
+
+                        <div class="form-group">
+                            @Html.Label("loanTypeId", "Tipo de Crédito:", new { @class = "col-md-3 control-label" })
+                            <div class="col-md-9">
+                                @Html.DropDownList("loanTypeId", null, htmlAttributes: new { @class = "form-control show-tick", @readonly="true" })
+                                @Html.ValidationMessageFor(model => model.loanTypes.loanTypeId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("memberLoanStatusId", "Estado:", new { @class = "col-md-3 control-label" })
+                            <div class="col-md-9">
+                                @Html.DropDownList("memberLoanStatusId", null, htmlAttributes: new { @class = "form-control show-tick"})
+                                @Html.ValidationMessageFor(model => model.memberLoansStatus.memberLoanStatusId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.appDate, new { @class = "col-md-3 control-label" })
+                            <div class="col-md-9">
+                                @Html.TextBoxFor(model => model.appDate, new { @class = "form-control", @id = "dp1", @readonly="true" })
+                                @Html.ValidationMessageFor(model => model.appDate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.aprDate, new { @class = "col-md-3 control-label" })
+                            <div class="col-md-9">
+                                @Html.TextBoxFor(model => model.aprDate, new { @class = "form-control", @id = "dp2" })
+                                @Html.ValidationMessageFor(model => model.aprDate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Notes, new { @class = "col-md-3 control-label" })
+                            <div class="col-md-9">
+                                @Html.TextBoxFor(model => model.Notes, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Notes, "", new { @class = "text-danger" })
+                            </div>
+                        </div>                   
+
+                    </div>
+                </div>
+                <div class="panel-footer text-center">
+                    @Html.SubmitButtonBootstrap(@Resources.btnSaveText, Buttons.Primary, new { @class = "min-width-100" })
+                    @Html.ActionLinkBootstrap(@Resources.btnCancelText, "Index", null, new { @class = "min-width-100" })
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script type="text/javascript">
+        $(function () {
+            window.prettyPrint && prettyPrint();
+            $('#dp1').datepicker({
+                format: 'dd-mm-yyyy'
+            });
+
+            $('#dp2').datepicker({
+                format: 'dd-mm-yyyy'
+            });
+          
+        });
+    </script>
+    
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+
+
+
+}
+
+
+@*@using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
@@ -82,4 +186,4 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-}
+}*@

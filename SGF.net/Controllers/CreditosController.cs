@@ -110,7 +110,7 @@ namespace SGF.net.Controllers
 
             ViewBag.loanTypeId = new SelectList(db.loanTypes, "loanTypeId", "name", memberloans.loanTypeId);
             ViewBag.memberLoanStatusId = new SelectList(db.memberLoansStatus, "memberLoanStatusId", "name", memberloans.memberLoanStatusId);
-            ViewBag.memberId = new SelectList(db.members, "memberId", "documentId", memberloans.memberId);
+            ViewBag.memberId = new SelectList(db.members, "memberId", "fullname", memberloans.memberId);
             return View(memberloans);
         }
 
@@ -126,7 +126,7 @@ namespace SGF.net.Controllers
             }
             ViewBag.loanTypeId = new SelectList(db.loanTypes, "loanTypeId", "name", memberloans.loanTypeId);
             ViewBag.memberLoanStatusId = new SelectList(db.memberLoansStatus, "memberLoanStatusId", "name", memberloans.memberLoanStatusId);
-            ViewBag.memberId = new SelectList(db.members, "memberId", "documentId", memberloans.memberId);
+            ViewBag.memberId = new SelectList(db.members, "memberId", "fullname", memberloans.memberId);
             return View(memberloans);
         }
 
@@ -145,7 +145,7 @@ namespace SGF.net.Controllers
             }
             ViewBag.loanTypeId = new SelectList(db.loanTypes, "loanTypeId", "name", memberloans.loanTypeId);
             ViewBag.memberLoanStatusId = new SelectList(db.memberLoansStatus, "memberLoanStatusId", "name", memberloans.memberLoanStatusId);
-            ViewBag.memberId = new SelectList(db.members, "memberId", "documentId", memberloans.memberId);
+            ViewBag.memberId = new SelectList(db.members, "memberId", "fullname", memberloans.memberId);
             return View(memberloans);
         }
 

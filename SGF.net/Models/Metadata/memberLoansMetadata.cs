@@ -25,7 +25,9 @@ namespace SGF.net.Models
             [DisplayName("Estado:")]
             public int memberLoanStatusId { get; set; }
             [DisplayName("Fecha Solicitud:")]
+            [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
             public Nullable<System.DateTime> appDate { get; set; }
+            [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
             [DisplayName("Fecha Aprobación:")]
             public Nullable<System.DateTime> aprDate { get; set; }
             [DisplayName("Notas:")]

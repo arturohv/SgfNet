@@ -1,65 +1,73 @@
 ﻿@model SGF.net.Models.memberLoans
+@using SGF.net.Helpers.Bootstrap3
+@using Resources
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "SGF.net - Credito - Detalles";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<div class="row">
+    <div class="col-sm-offset-3 col-sm-10">
+        <div class="panel panel-default ">
+            <div class="panel-heading">
+                <h4><strong>Detalle del Credito</strong></h4>
+            </div>
+            <div class="panel-body">
+                <table class="table table-condensed table-striped">
+                    <tr>
+                        <th>Operación #</th>
+                        <td>@Html.DisplayFor(model => model.memberLoanId)</td>
+                    </tr>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.loanTypes.name)</th>
+                        <td>@Html.DisplayFor(model => model.loanTypes.name)</td>
+                    </tr>
 
-<fieldset>
-    <legend>memberLoans</legend>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.members.documentId)</th>
+                        <td>@Html.DisplayFor(model => model.members.documentId)</td>
+                    </tr>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.memberLoanId)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.memberLoanId)
-    </div>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.members.fullname)</th>
+                        <td>@Html.DisplayFor(model => model.members.fullname)</td>
+                    </tr>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.members.documentId)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.members.documentId)
-    </div>
+                    <tr>
+                        <th>Estado</th>
+                        <td>@Html.DisplayFor(model => model.memberLoansStatus.name)</td>
+                    </tr>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.loanTypes.name)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.loanTypes.name)
-    </div>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.appDate)</th>
+                        <td>@Html.DisplayFor(model => model.appDate)</td>
+                    </tr>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.memberLoansStatus.name)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.memberLoansStatus.name)
-    </div>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.aprDate)</th>
+                        <td>@Html.DisplayFor(model => model.aprDate)</td>
+                    </tr>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.appDate)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.appDate)
-    </div>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.loanTypes.totalAmount)</th>
+                        <td>@Html.DisplayFor(model => model.loanTypes.totalAmount)</td>
+                    </tr>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.aprDate)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.aprDate)
-    </div>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Notes)</th>
+                        <td>@Html.DisplayFor(model => model.Notes)</td>
+                    </tr>
+                </table>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Notes)
+            </div>
+            <div class="panel-footer">
+                <div class="form-group text-center">
+                    @Html.ActionLinkBootstrap(@Resources.btnEditText, "Edit", new { id = Model.loanTypeId }, new { @class = "min-width-100" }, Buttons.Primary)
+                    @Html.ActionLinkBootstrap(@Resources.btnBackText, "Index", null, new { @class = "min-width-100" })
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Notes)
-    </div>
-</fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+</div>
+

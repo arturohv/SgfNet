@@ -81,9 +81,13 @@
                                         @*<a title="Detalles" href="@Url.Action("Details", "Office", new { id = item.officeId })" class="btn btn-default bg-warning"><span class="glyphicon glyphicon-list-alt"></span></a>
                                         <a title="Editar" href="@Url.Action("Edit", "Office", new { id = item.officeId })" class="btn btn-default bg-info"><span class="glyphicon glyphicon-pencil"></span></a>
                                         <a title="Eliminar" href="@Url.Action("Delete", "Office", new { id = item.officeId })" class="btn btn-default bg-danger"><span class="glyphicon glyphicon-remove"></span></a>*@
-                                         @Html.ActionLinkBootstrap(string.Empty, "Details", new { id = item.memberLoanId, id2 = item.memberId }, null, Buttons.Default, Icons.List_Alt, @Resources.btnDetailsText)
-                                         @Html.ActionLinkBootstrap(string.Empty, "Edit", new { id = item.memberLoanId, id2 = item.memberId }, null, Buttons.Default, Icons.Pencil, @Resources.btnEditText)
+                                        @Html.ActionLinkBootstrap(string.Empty, "Details", new { id = item.memberLoanId, id2 = item.memberId }, null, Buttons.Default, Icons.List_Alt, @Resources.btnDetailsText)
+                                        @if (item.memberLoansStatus.memberLoanStatusId == 1)
+                                        {
+                                            @Html.ActionLinkBootstrap(string.Empty, "Edit", new { id = item.memberLoanId, id2 = item.memberId }, null, Buttons.Default, Icons.Pencil, @Resources.btnEditText)
                                          @Html.ActionLinkBootstrap(string.Empty, "Delete", new { id = item.memberLoanId, id2 = item.memberId }, null, Buttons.Default, Icons.Remove, @Resources.btnDeleteText)
+                                        } 
+                                        
                                     </div>
                                 </td>
                             </tr>
