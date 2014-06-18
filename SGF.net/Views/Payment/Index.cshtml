@@ -1,0 +1,110 @@
+﻿@*@model IEnumerable<SGF.net.Models.memberLoans>*@
+@model PagedList.IPagedList<SGF.net.Models.View_PendingsPayments>
+@using SGF.net.Helpers.Bootstrap3
+@using Resources
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-sm-offset-2 col-sm-12">
+
+        <div class="panel panel-primary">
+            <div class="panel-heading"><h4><strong>Gestión de Pagos</strong></h4></div>
+            <div class="panel-body">
+
+                @if (Model.Count() > 0)
+                {        
+           
+                                       
+                    <table class="table table-striped">
+                        <tr>
+                            <th>
+                                Operacion #
+                            </th>
+                            <th>
+                                Asociado
+                            </th>                                
+                            <th>                                
+                                Tipo de Credito                            
+                            </th>
+                            <th>                                
+                                Monto Total                        
+                            </th>
+                            <th>                                
+                                Monto Cuota                          
+                            </th>
+                            <th>                                
+                                Saldo Actual                            
+                            </th>
+                            <th>                                
+                                Pagos Realizados                            
+                            </th>
+                            <th>                                
+                                Pagos Pendientes                            
+                            </th>
+                            
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.memberLoanId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.members.fullname)
+                                </td>
+                                @*<td>
+                                    @Html.DisplayFor(modelItem => item.members.firstName)
+                                </td>*@
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.memberLoansStatus.name)
+                                </td>
+
+                                <td class="text-right controls">
+                                    <div class="btn-group btn-group-sm control">
+                                        @*<a title="Detalles" href="@Url.Action("Details", "Office", new { id = item.officeId })" class="btn btn-default bg-warning"><span class="glyphicon glyphicon-list-alt"></span></a>
+                                        <a title="Editar" href="@Url.Action("Edit", "Office", new { id = item.officeId })" class="btn btn-default bg-info"><span class="glyphicon glyphicon-pencil"></span></a>
+                                        <a title="Eliminar" href="@Url.Action("Delete", "Office", new { id = item.officeId })" class="btn btn-default bg-danger"><span class="glyphicon glyphicon-remove"></span></a>*@
+                                        @Html.ActionLinkBootstrap(string.Empty, "Details", new { id = item.memberLoanId, id2 = item.memberId }, null, Buttons.Default, Icons.List_Alt, @Resources.btnDetailsText)
+                                        @if (item.memberLoansStatus.memberLoanStatusId == 1)
+                                        {
+                                            @Html.ActionLinkBootstrap(string.Empty, "Edit", new { id = item.memberLoanId, id2 = item.memberId }, null, Buttons.Default, Icons.Pencil, @Resources.btnEditText)
+                                         @Html.ActionLinkBootstrap(string.Empty, "Delete", new { id = item.memberLoanId, id2 = item.memberId }, null, Buttons.Default, Icons.Remove, @Resources.btnDeleteText)
+                                        } 
+                                        
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+                    
+                     <div style="text-align:center">
+                                <span>
+                                    @*Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount*@
+                                    @Html.PagedListPager(Model, page => Url.Action("Index",
+                                        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                                </span>
+                      </div>
+
+                }
+                else
+                {
+                    <div class="clearfix"></div>
+                    <div class="alert alert-info">
+                        <div class="no-results">No existen datos.</div>                        
+                    </div>
+                    @Html.ActionLinkBootstrap(@Resources.btnBackText, "Index", null, new { @class = "min-width-100" })
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

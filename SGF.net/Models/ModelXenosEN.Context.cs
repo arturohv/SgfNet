@@ -36,5 +36,6 @@ namespace SGF.net.Models
         public DbSet<members> members { get; set; }
         public DbSet<offices> offices { get; set; }
         public DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public DbSet<View_PendingsPayments> View_PendingsPayments { get; set; }
     }
 }

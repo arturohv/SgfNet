@@ -17,6 +17,18 @@
           <EntitySet Name="members" EntityType="XenosENModel.Store.members" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="offices" EntityType="XenosENModel.Store.offices" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="sysdiagrams" EntityType="XenosENModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="View_PendingsPayments" EntityType="XenosENModel.Store.View_PendingsPayments" store:Type="Views" store:Schema="dbo" store:Name="View_PendingsPayments">
+            <DefiningQuery>SELECT 
+      [View_PendingsPayments].[Operacion] AS [Operacion], 
+      [View_PendingsPayments].[NombreFull] AS [NombreFull], 
+      [View_PendingsPayments].[nombreCredito] AS [nombreCredito], 
+      [View_PendingsPayments].[montoTotal] AS [montoTotal], 
+      [View_PendingsPayments].[montoCuota] AS [montoCuota], 
+      [View_PendingsPayments].[MontoSaldoActual] AS [MontoSaldoActual], 
+      [View_PendingsPayments].[CuotasHechas] AS [CuotasHechas], 
+      [View_PendingsPayments].[SaldoCuotas] AS [SaldoCuotas]
+      FROM [dbo].[View_PendingsPayments] AS [View_PendingsPayments]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_memberChilds_members" Association="XenosENModel.Store.FK_memberChilds_members">
             <End Role="members" EntitySet="members" />
             <End Role="memberChilds" EntitySet="memberChilds" />
@@ -176,6 +188,24 @@
           <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'XenosEN.dbo.View_PendingsPayments' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      -->
+        <EntityType Name="View_PendingsPayments">
+          <Key>
+            <PropertyRef Name="Operacion" />
+            <PropertyRef Name="NombreFull" />
+            <PropertyRef Name="nombreCredito" />
+          </Key>
+          <Property Name="Operacion" Type="int" Nullable="false" />
+          <Property Name="NombreFull" Type="nvarchar" Nullable="false" MaxLength="61" />
+          <Property Name="nombreCredito" Type="nvarchar" Nullable="false" MaxLength="40" />
+          <Property Name="montoTotal" Type="money" />
+          <Property Name="montoCuota" Type="money" />
+          <Property Name="MontoSaldoActual" Type="int" />
+          <Property Name="CuotasHechas" Type="int" />
+          <Property Name="SaldoCuotas" Type="int" />
         </EntityType>
         <Association Name="FK_memberChilds_members">
           <End Role="members" Type="XenosENModel.Store.members" Multiplicity="1" />
@@ -339,6 +369,7 @@
             <End Role="offices" EntitySet="offices" />
             <End Role="members" EntitySet="members" />
           </AssociationSet>
+          <EntitySet Name="View_PendingsPayments" EntityType="XenosENModel.View_PendingsPayments" />
         </EntityContainer>
         <EntityType Name="loanTypes">
           <Key>
@@ -591,6 +622,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="View_PendingsPayments">
+          <Key>
+            <PropertyRef Name="Operacion" />
+            <PropertyRef Name="NombreFull" />
+            <PropertyRef Name="nombreCredito" />
+          </Key>
+          <Property Type="Int32" Name="Operacion" Nullable="false" />
+          <Property Type="String" Name="NombreFull" Nullable="false" MaxLength="61" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="nombreCredito" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="montoTotal" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="montoCuota" Precision="19" Scale="4" />
+          <Property Type="Int32" Name="MontoSaldoActual" />
+          <Property Type="Int32" Name="CuotasHechas" />
+          <Property Type="Int32" Name="SaldoCuotas" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -725,6 +771,20 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_PendingsPayments">
+            <EntityTypeMapping TypeName="XenosENModel.View_PendingsPayments">
+              <MappingFragment StoreEntitySet="View_PendingsPayments">
+                <ScalarProperty Name="SaldoCuotas" ColumnName="SaldoCuotas" />
+                <ScalarProperty Name="CuotasHechas" ColumnName="CuotasHechas" />
+                <ScalarProperty Name="MontoSaldoActual" ColumnName="MontoSaldoActual" />
+                <ScalarProperty Name="montoCuota" ColumnName="montoCuota" />
+                <ScalarProperty Name="montoTotal" ColumnName="montoTotal" />
+                <ScalarProperty Name="nombreCredito" ColumnName="nombreCredito" />
+                <ScalarProperty Name="NombreFull" ColumnName="NombreFull" />
+                <ScalarProperty Name="Operacion" ColumnName="Operacion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

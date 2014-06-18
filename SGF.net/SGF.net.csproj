@@ -144,6 +144,7 @@
     <Compile Include="Controllers\LineasCreditoController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\OfficeController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -205,6 +206,9 @@
       <DependentUpon>ModelXenosEN.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>ModelXenosEN.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\View_PendingsPayments.cs">
       <DependentUpon>ModelXenosEN.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -332,6 +336,7 @@
     <Content Include="Views\Creditos\Create.cshtml" />
     <Content Include="Views\Creditos\Edit.cshtml" />
     <Content Include="Views\Creditos\Delete.cshtml" />
+    <Content Include="Views\Payment\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

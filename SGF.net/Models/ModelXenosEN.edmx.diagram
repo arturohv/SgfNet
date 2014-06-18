@@ -25,6 +25,7 @@
         <AssociationConnector Association="XenosENModel.FK_members_memberMaritalStatus" ManuallyRouted="false" />
         <AssociationConnector Association="XenosENModel.FK_members_memberPaymentTypes" ManuallyRouted="false" />
         <AssociationConnector Association="XenosENModel.FK_members_offices" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="XenosENModel.View_PendingsPayments" Width="1.5" PointX="6.2141941404967538" PointY="12.34663564541686" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
