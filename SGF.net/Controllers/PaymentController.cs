@@ -16,10 +16,36 @@ namespace SGF.net.Controllers
         //
         // GET: /Payment/
 
-        public ActionResult Index()
+        //public ActionResult Index()
+        //{
+        //    var ViewPayments = db.View_PendingsPayments;           
+
+        //    return View(ViewPayments.ToList());
+        //}
+
+        public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            var ViewPayments = db.View_PendingsPayments;
-            return View(ViewPayments.ToList());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;          
+
+
+            var tbl = db.View_PendingsPayments.OrderBy(s => s.NombreFull);
+
+                     
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(tbl.ToPagedList(pageNumber, pageSize));
         }
 
     }
