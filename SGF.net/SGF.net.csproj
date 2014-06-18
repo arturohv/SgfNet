@@ -221,6 +221,7 @@
     <Content Include="Content\datepicker.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="DBscripts\script.sql" />
+    <Content Include="DBscripts\scriptFinal.sql" />
     <Content Include="DBscripts\scriptNuevoConDatos.sql" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
