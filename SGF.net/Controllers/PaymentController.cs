@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿//Contiene la logica y la capa negocios para los gestion de pagos 
+//Tiene todas las funciones CRUD necesarias para que me funcione en la vista
+//Utiliza metodos de ordenamiento y paginacion en el ViewResult
+
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using SGF.net.Models;
-using PagedList;
+
 
 namespace SGF.net.Controllers
 {
@@ -20,6 +19,8 @@ namespace SGF.net.Controllers
         {
             var ViewPayments = db.View_PendingsPayments;
             return View(ViewPayments.ToList());
+
+            
         }
 
     }

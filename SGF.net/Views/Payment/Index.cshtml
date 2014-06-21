@@ -1,5 +1,5 @@
 ﻿@*@model IEnumerable<SGF.net.Models.memberLoans>*@
-@model PagedList.IPagedList<SGF.net.Models.View_PendingsPayments>
+@model ICollection<SGF.net.Models.View_PendingsPayments>
 @using SGF.net.Helpers.Bootstrap3
 @using Resources
 @using PagedList.Mvc;
@@ -32,16 +32,10 @@
                                 Tipo de Credito                            
                             </th>
                             <th>                                
-                                Monto Total                        
-                            </th>
-                            <th>                                
                                 Monto Cuota                          
                             </th>
                             <th>                                
                                 Saldo Actual                            
-                            </th>
-                            <th>                                
-                                Pagos Realizados                            
                             </th>
                             <th>                                
                                 Pagos Pendientes                            
@@ -53,30 +47,34 @@
                         {
                             <tr>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.memberLoanId)
+                                    @Html.DisplayFor(modelItem => item.Operacion)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.members.fullname)
+                                    @Html.DisplayFor(modelItem => item.NombreFull)
                                 </td>
-                                @*<td>
-                                    @Html.DisplayFor(modelItem => item.members.firstName)
-                                </td>*@
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.memberLoansStatus.name)
+                                    @Html.DisplayFor(modelItem => item.nombreCredito)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.montoCuota)
+                                </td>
+                                 <td>
+                                    @Html.DisplayFor(modelItem => item.MontoSaldoActual)
+                                </td>
+                                 <td>
+                                    @Html.DisplayFor(modelItem => item.SaldoCuotas)
                                 </td>
 
                                 <td class="text-right controls">
                                     <div class="btn-group btn-group-sm control">
-                                        @*<a title="Detalles" href="@Url.Action("Details", "Office", new { id = item.officeId })" class="btn btn-default bg-warning"><span class="glyphicon glyphicon-list-alt"></span></a>
-                                        <a title="Editar" href="@Url.Action("Edit", "Office", new { id = item.officeId })" class="btn btn-default bg-info"><span class="glyphicon glyphicon-pencil"></span></a>
-                                        <a title="Eliminar" href="@Url.Action("Delete", "Office", new { id = item.officeId })" class="btn btn-default bg-danger"><span class="glyphicon glyphicon-remove"></span></a>*@
-                                        @Html.ActionLinkBootstrap(string.Empty, "Details", new { id = item.memberLoanId, id2 = item.memberId }, null, Buttons.Default, Icons.List_Alt, @Resources.btnDetailsText)
+                                       
+                                        @*@Html.ActionLinkBootstrap(string.Empty, "Details", new { id = item.memberLoanId, id2 = item.memberId }, null, Buttons.Default, Icons.List_Alt, @Resources.btnDetailsText)
                                         @if (item.memberLoansStatus.memberLoanStatusId == 1)
                                         {
                                             @Html.ActionLinkBootstrap(string.Empty, "Edit", new { id = item.memberLoanId, id2 = item.memberId }, null, Buttons.Default, Icons.Pencil, @Resources.btnEditText)
                                          @Html.ActionLinkBootstrap(string.Empty, "Delete", new { id = item.memberLoanId, id2 = item.memberId }, null, Buttons.Default, Icons.Remove, @Resources.btnDeleteText)
                                         } 
-                                        
+                                        *@
                                     </div>
                                 </td>
                             </tr>
@@ -86,9 +84,7 @@
                     
                      <div style="text-align:center">
                                 <span>
-                                    @*Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount*@
-                                    @Html.PagedListPager(Model, page => Url.Action("Index",
-                                        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                                   
                                 </span>
                       </div>
 

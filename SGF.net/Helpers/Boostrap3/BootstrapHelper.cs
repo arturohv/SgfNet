@@ -1,4 +1,7 @@
-﻿
+﻿//Clase de helpers que me permite usar actionLink y submitButton 
+//Con algunas caracteristicas especiales para evitar digitar mucho codigo adicional
+//Permite usar iconos, color y tipo de botones
+
 namespace SGF.net.Helpers.Bootstrap3
 {
 
